@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class characterEmotions : MonoBehaviour
+public class characterEmotionsold : MonoBehaviour
 {
     public Sprite happy;
     public Sprite mad;

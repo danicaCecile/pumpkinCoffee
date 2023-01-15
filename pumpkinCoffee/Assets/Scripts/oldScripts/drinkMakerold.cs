@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class drinkMaker : MonoBehaviour
+public class drinkMakerold : MonoBehaviour
 {
     public List<GameObject> Mugs = new List<GameObject>();
     public List<GameObject> Drinks = new List<GameObject>();
