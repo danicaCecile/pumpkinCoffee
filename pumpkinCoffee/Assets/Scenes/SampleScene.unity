@@ -7252,6 +7252,24 @@ MonoBehaviour:
   - {fileID: 1445597812}
   - {fileID: 1540224502}
   characterBubble: {fileID: 470385284}
+  emotionObject: {fileID: 1902101250}
+  happyEmote: {fileID: 296656702}
+  sadEmote: {fileID: 278940074}
+  happyFaces:
+  - {fileID: 21300000, guid: 1ed5027d3d9e96b4d8204614ede05fb7, type: 3}
+  - {fileID: 21300000, guid: 167115300c90b444eb5d7cb660168897, type: 3}
+  - {fileID: 21300000, guid: b1f70e0709c0f7d408be3360db8d13d5, type: 3}
+  - {fileID: 21300000, guid: 0825f8a515872a343ba7c1cb5a3f832e, type: 3}
+  sadFaces:
+  - {fileID: 21300000, guid: c57cecacd52374a4684446b15f1ef27b, type: 3}
+  - {fileID: 21300000, guid: 0d3bf37492d04dc48886760cee8362e3, type: 3}
+  - {fileID: 21300000, guid: e13dd4ee99691684fb32456408d2d06d, type: 3}
+  - {fileID: 21300000, guid: f3376e2a83cf3544a8f608a4641f6335, type: 3}
+  blinkAnimators:
+  - {fileID: 263029376}
+  - {fileID: 1895469586}
+  - {fileID: 1445597815}
+  - {fileID: 1540224505}
 --- !u!1 &828149104
 GameObject:
   m_ObjectHideFlags: 0

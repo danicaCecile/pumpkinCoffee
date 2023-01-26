@@ -83,16 +83,28 @@ public class drinkSeller : MonoBehaviour
         else return false;
     }
 
-    void OnMouseDown()
+    private IEnumerator bellPressedAction()
     {
         bool didWin = isCorrectDrink();
-        if(didWin == true)
+        if (didWin == true)
         {
             bank.addBal(5f);
         }
+
         clearDrink();
+
         userDrink.clearDrink();
+        currentCustomer.emote(didWin);
+
+        yield return new WaitForSeconds(2f);
+
+        currentCustomer.hideBubble();
         currentCustomer.customerLeave();
         generateDrink();
+    }
+
+    void OnMouseDown()
+    {
+        StartCoroutine(bellPressedAction());
     }
 }
