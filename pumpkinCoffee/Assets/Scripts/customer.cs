@@ -65,6 +65,7 @@ public class customer : MonoBehaviour
     {
         customerLeaving = true;
         currentCustomer.GetComponent<SpriteRenderer>().sprite = originalFace;
+        blinkAnimators[customerIndex].enabled = true;
         characterBubble.SetActive(false);
     }
 

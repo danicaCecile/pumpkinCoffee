@@ -96,7 +96,7 @@ public class drinkSeller : MonoBehaviour
         userDrink.clearDrink();
         currentCustomer.emote(didWin);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         currentCustomer.hideBubble();
         currentCustomer.customerLeave();
