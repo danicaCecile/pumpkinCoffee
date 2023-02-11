@@ -42,8 +42,8 @@ public class bank : MonoBehaviour
 
     public void subBal(float money)
     {
-        balance -= money;
-        displayBal();
+            balance -= money;
+            displayBal();
     }
 
     private void displayBal()

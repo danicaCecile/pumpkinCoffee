@@ -35,7 +35,7 @@ public class customer : MonoBehaviour
         if(customerEntering == true)
         {
             currentCustomer.transform.position += new Vector3(-0.004f, 0, 0);
-            if (currentCustomer.transform.position.x <= 2.16f)
+            if (currentCustomer.transform.position.x <= 2.6f)
             {
                 customerEntering = false;
                 showBubble();
@@ -45,7 +45,7 @@ public class customer : MonoBehaviour
         if (customerLeaving == true)
         {
             currentCustomer.transform.position += new Vector3(0.004f, 0, 0);
-            if (currentCustomer.transform.position.x >= 5.25f)
+            if (currentCustomer.transform.position.x >= 4.25f)
             {
                 customerLeaving = false;
                 getNewCustomer();

@@ -21,6 +21,8 @@ public class drinkSeller : MonoBehaviour
     public customer currentCustomer;
     public bank bank;
 
+    public float drinkCost = 10f;
+
     void Start()
     {
         generateDrink();
@@ -88,7 +90,7 @@ public class drinkSeller : MonoBehaviour
         bool didWin = isCorrectDrink();
         if (didWin == true)
         {
-            bank.addBal(5f);
+            bank.addBal(drinkCost);
         }
 
         clearDrink();
