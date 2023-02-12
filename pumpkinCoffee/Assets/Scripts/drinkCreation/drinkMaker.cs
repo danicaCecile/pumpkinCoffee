@@ -20,6 +20,8 @@ public class drinkMaker : MonoBehaviour
     private bool sprinklesAdded;
     private int drinkStage = 0;
 
+    private bool isPaused = false;
+
     private List<Sprite> drinkConfig = new List<Sprite>();
 
     void Start()
@@ -32,71 +34,83 @@ public class drinkMaker : MonoBehaviour
 
     public void activateMug(Sprite ingredient)
     {
-        mugObject.SetActive(true);
-        mug.sprite = ingredient;
-
-        if (drinkStage == 0) drinkStage = 1;
-
-        if (mugAdded == false)
+        if (isPaused == false)
         {
-            mugAdded = true;
-            drinkConfig.Add(ingredient);
+            mugObject.SetActive(true);
+            mug.sprite = ingredient;
+
+            if (drinkStage == 0) drinkStage = 1;
+
+            if (mugAdded == false)
+            {
+                mugAdded = true;
+                drinkConfig.Add(ingredient);
+            }
+            else drinkConfig[0] = ingredient;
         }
-        else drinkConfig[0] = ingredient;
     }
 
     public void activateDrink(Sprite ingredient)
     {
-        if (drinkStage >= 1)
+        if (isPaused == false)
         {
-            drinkObject.SetActive(true);
-
-            drink.sprite = ingredient;
-
-            if (drinkStage == 1) drinkStage = 2;
-
-            if (drinkAdded == false)
+            if (drinkStage >= 1)
             {
-                drinkAdded = true;
-                drinkConfig.Add(ingredient);
+                drinkObject.SetActive(true);
+
+                drink.sprite = ingredient;
+
+                if (drinkStage == 1) drinkStage = 2;
+
+                if (drinkAdded == false)
+                {
+                    drinkAdded = true;
+                    drinkConfig.Add(ingredient);
+                }
+                else drinkConfig[1] = ingredient;
             }
-            else drinkConfig[1] = ingredient;
         }
     }
 
     public void activateCream(Sprite ingredient)
     {
-        if (drinkStage >= 2)
+        if (isPaused == false)
         {
-            creamObject.SetActive(true);
-
-            cream.sprite = ingredient;
-
-            if (drinkStage == 2) drinkStage = 3;
-
-            if (creamAdded == false)
+            if (drinkStage >= 2)
             {
-                creamAdded = true;
-                drinkConfig.Add(ingredient);
+                creamObject.SetActive(true);
+
+                cream.sprite = ingredient;
+
+                if (drinkStage == 2) drinkStage = 3;
+
+                if (creamAdded == false)
+                {
+                    creamAdded = true;
+                    drinkConfig.Add(ingredient);
+                }
+                else drinkConfig[2] = ingredient;
             }
-            else drinkConfig[2] = ingredient;
         }
     }
 
     public void activateSprinkles(Sprite ingredient)
     {
-        if (drinkStage == 3)
+        if(isPaused == false)
         {
-            sprinklesObject.SetActive(true);
-
-            sprinkles.sprite = ingredient;
-
-            if (sprinklesAdded == false)
+            if (drinkStage == 3)
             {
-                sprinklesAdded = true;
-                drinkConfig.Add(ingredient);
+                sprinklesObject.SetActive(true);
+
+                sprinkles.sprite = ingredient;
+
+                if (sprinklesAdded == false)
+                {
+                    sprinklesAdded = true;
+                    drinkConfig.Add(ingredient);
+                }
+                else drinkConfig[3] = ingredient;
             }
-            else drinkConfig[3] = ingredient;
         }
     }
 
@@ -120,5 +134,15 @@ public class drinkMaker : MonoBehaviour
     public List<Sprite> getConfig()
     {
         return drinkConfig;
+    }
+
+    public void pause()
+    {
+        isPaused = true;
+    }
+
+    public void unPause()
+    {
+        isPaused = false;
     }
 }

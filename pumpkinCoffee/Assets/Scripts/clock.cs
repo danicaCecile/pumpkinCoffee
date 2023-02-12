@@ -12,7 +12,7 @@ public class clock : MonoBehaviour
     private float pauseBlinkLength = 1f;
     private float timeRemainingBlink;
     private bool isContainerActive = true;
-    public GameObject clockContainer;
+    public List<Image> imagesToBlink = new List<Image>();
 
     public float startingHour = 6f;
     public float endingHour = 15f;
@@ -82,7 +82,25 @@ public class clock : MonoBehaviour
 
     private void setTimerActive(bool isActive)
     {
-        clockContainer.SetActive(isActive);
+        if(isActive == false)
+        {
+            foreach (Image imageToBlink in imagesToBlink)
+            {
+                var tempColor = imageToBlink.color;
+                tempColor.a = 0.8f;
+                imageToBlink.color = tempColor;
+            }
+        }
+        else
+        {
+            foreach (Image imageToBlink in imagesToBlink)
+            {
+                var tempColor = imageToBlink.color;
+                tempColor.a = 1f;
+                imageToBlink.color = tempColor;
+            }
+        }
+   
         isContainerActive = isActive;
     }
 

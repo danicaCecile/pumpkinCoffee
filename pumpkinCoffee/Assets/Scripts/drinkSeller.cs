@@ -23,6 +23,8 @@ public class drinkSeller : MonoBehaviour
 
     public float drinkCost = 10f;
 
+    private bool isPaused = false;
+
     void Start()
     {
         generateDrink();
@@ -65,7 +67,7 @@ public class drinkSeller : MonoBehaviour
         sprinkles.SetActive(false);
     }
 
-    public bool isCorrectDrink()
+    private bool isCorrectDrink()
     {
         List<Sprite> userDrinkConfig = userDrink.getConfig();
 
@@ -87,26 +89,39 @@ public class drinkSeller : MonoBehaviour
 
     private IEnumerator bellPressedAction()
     {
-        bool didWin = isCorrectDrink();
-        if (didWin == true)
+        if(isPaused == false)
         {
-            bank.addBal(drinkCost);
+            bool didWin = isCorrectDrink();
+            if (didWin == true)
+            {
+                bank.addBal(drinkCost);
+            }
+
+            clearDrink();
+
+            userDrink.clearDrink();
+            currentCustomer.emote(didWin);
+
+            yield return new WaitForSeconds(1f);
+
+            currentCustomer.hideBubble();
+            currentCustomer.customerLeave();
+            generateDrink();
         }
-
-        clearDrink();
-
-        userDrink.clearDrink();
-        currentCustomer.emote(didWin);
-
-        yield return new WaitForSeconds(1f);
-
-        currentCustomer.hideBubble();
-        currentCustomer.customerLeave();
-        generateDrink();
     }
 
     void OnMouseDown()
     {
         StartCoroutine(bellPressedAction());
+    }
+
+    public void pause()
+    {
+        isPaused = true;
+    }
+
+    public void unPause()
+    {
+        isPaused = false;
     }
 }
