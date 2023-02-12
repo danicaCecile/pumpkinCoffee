@@ -39,6 +39,11 @@ public class shopManager : MonoBehaviour
 
     public bank Bank;
 
+    void Start()
+    {
+        currentWallColor = wallColorObject2;
+    }
+
     public void toggleShop()
     {
 
@@ -105,7 +110,7 @@ public class shopManager : MonoBehaviour
 
     private void showWallColor(GameObject option, float price)
     {
-        if (currentWallColor != null) currentWallColor.SetActive(false);
+        currentWallColor.SetActive(false);
         currentWallColor = option;
         buyDecoration(option, price);
     }

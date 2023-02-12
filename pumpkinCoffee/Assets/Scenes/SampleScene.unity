@@ -18258,7 +18258,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488f3b28e324ff24f88a0dbd8b42861e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 10
+  startingHour: 6
+  endingHour: 15
+  tenMinsLenInSecs: 1
+  numbers:
+  - {fileID: -461782066, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  - {fileID: 462573826, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  - {fileID: -1939061777, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  - {fileID: 2006570115, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  - {fileID: 861188240, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  - {fileID: 374770667, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  - {fileID: -1840854077, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  - {fileID: -587754304, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  - {fileID: 61987585, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  - {fileID: 1550303110, guid: 09c528ce672ff8849a8f2d152f9ab57d, type: 3}
+  amPmLetters:
+  - {fileID: -162191137, guid: 39b8dde6c0bdd6c47b4b66650f6ae74d, type: 3}
+  - {fileID: 1346835081, guid: 39b8dde6c0bdd6c47b4b66650f6ae74d, type: 3}
+  places:
+  - {fileID: 1677207297}
+  - {fileID: 1189305506}
+  - {fileID: 1180212265}
+  - {fileID: 1764597425}
 --- !u!1 &1670367592
 GameObject:
   m_ObjectHideFlags: 0
