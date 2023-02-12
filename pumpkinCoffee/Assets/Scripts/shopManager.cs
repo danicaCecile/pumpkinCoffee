@@ -38,6 +38,7 @@ public class shopManager : MonoBehaviour
     private GameObject currentWallArt;
 
     public bank Bank;
+    public clock Clock;
 
     void Start()
     {
@@ -51,12 +52,14 @@ public class shopManager : MonoBehaviour
         {
             shop.SetActive(true);
             isShopOpen = true;
+            Clock.pause();
         }
         else
         {
             goBack();
             shop.SetActive(false);
             isShopOpen = false;
+            Clock.unPause();
         }
 
         currentShopType = shopHome;

@@ -9,6 +9,11 @@ public class clock : MonoBehaviour
     private float timeRemaining;
     private float totalTime;
 
+    private float pauseBlinkLength = 1f;
+    private float timeRemainingBlink;
+    private bool isContainerActive = true;
+    public GameObject clockContainer;
+
     public float startingHour = 6f;
     public float endingHour = 15f;
     public float tenMinsLenInSecs = 10f;
@@ -17,13 +22,71 @@ public class clock : MonoBehaviour
     public List<Sprite> amPmLetters = new List<Sprite>();
     public List<Image> places = new List<Image>();
 
+    private bool isPaused = false;
+
     void Start()
     {
         timeRemaining = (endingHour - startingHour) * 5 * tenMinsLenInSecs;
         totalTime = timeRemaining;
+
+        timeRemainingBlink = pauseBlinkLength;
     }
 
     void Update()
+    {
+        if (isPaused == false) incrementTimer();
+        else blinkAction();
+    }
+
+    public void resetDay()
+    {
+        timeRemaining = totalTime;
+    }
+
+    public void pause()
+    {
+        isPaused = true;
+    }
+
+    public void unPause()
+    {
+        isPaused = false;
+
+        setTimerActive(true);
+    }
+
+    private void blinkAction()
+    {
+        if (timeRemainingBlink > 0)
+        {
+            timeRemainingBlink -= Time.deltaTime;
+        }
+        else
+        {
+            toggleTimerContainer();
+            timeRemainingBlink = pauseBlinkLength;
+        }
+    }
+
+    private void toggleTimerContainer()
+    {
+        if(isContainerActive == true)
+        {
+            setTimerActive(false);
+        }
+        else
+        {
+            setTimerActive(true);
+        }
+    }
+
+    private void setTimerActive(bool isActive)
+    {
+        clockContainer.SetActive(isActive);
+        isContainerActive = isActive;
+    }
+
+    private void incrementTimer()
     {
         if (timeRemaining > 0)
         {
@@ -32,11 +95,6 @@ public class clock : MonoBehaviour
             //Debug.Log(time[0] + ":" + time[1] + 0);
             displayTime(time);
         }
-    }
-
-    public void resetDay()
-    {
-        timeRemaining = totalTime;
     }
 
     private void displayTime(float[] time)
