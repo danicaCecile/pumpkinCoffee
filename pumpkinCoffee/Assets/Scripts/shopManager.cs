@@ -40,6 +40,11 @@ public class shopManager : MonoBehaviour
     public bank Bank;
     public gameController GameController;
 
+    //for game win conditions
+    private bool hasBunting = false;
+    private bool hasPictures = false;
+    private bool hasShelfObject = false;
+
     void Start()
     {
         currentWallColor = wallColorObject2;
@@ -81,13 +86,15 @@ public class shopManager : MonoBehaviour
         shopHome.SetActive(false);
     }
 
-    private void buyDecoration(GameObject decoration, float price)
+    private int buyDecoration(GameObject decoration, float price)
     {
-        if(Bank.canAfford(price))
+        if (Bank.canAfford(price))
         {
             decoration.SetActive(true);
             Bank.subBal(price);
+            return 0;
         }
+        else return -1;
     }
 
     private void showBunting(GameObject option, float price)

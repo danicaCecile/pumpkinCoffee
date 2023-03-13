@@ -5,6 +5,7 @@ using UnityEngine;
 public class customer : MonoBehaviour
 {
     public drinkSeller drinkOrder;
+    public gameController gameController;
 
     public List<GameObject> customers = new List<GameObject>();
     private GameObject currentCustomer;
@@ -24,6 +25,7 @@ public class customer : MonoBehaviour
 
     public List<Animator> blinkAnimators = new List<Animator>();
 
+    private bool isServicingCustomer;
 
     void Start()
     {
@@ -38,6 +40,7 @@ public class customer : MonoBehaviour
             if (currentCustomer.transform.position.x <= 2.6f)
             {
                 customerEntering = false;
+                gameController.unPauseDrinkCreationAndSale();
                 showBubble();
             }
         }
@@ -48,7 +51,9 @@ public class customer : MonoBehaviour
             if (currentCustomer.transform.position.x >= 4.25f)
             {
                 customerLeaving = false;
-                getNewCustomer();
+                isServicingCustomer = false;
+                gameController.unPauseDrinkCreationAndSale();
+                if (gameController.isDayOver() != true) getNewCustomer();
             }
         }
     }
@@ -58,7 +63,9 @@ public class customer : MonoBehaviour
         int rand = Random.Range(0, 4);
         currentCustomer = customers[rand];
         customerIndex = rand;
+        gameController.pauseDrinkCreationAndSale();
         customerEntering = true;
+        isServicingCustomer = true;
     }
 
     public void customerLeave()
@@ -71,6 +78,7 @@ public class customer : MonoBehaviour
 
     public void emote(bool isHappy)
     {
+        gameController.pauseDrinkCreationAndSale();
         blinkAnimators[customerIndex].enabled = false;
         SpriteRenderer spriteRenderer = currentCustomer.GetComponent<SpriteRenderer>();
         originalFace = spriteRenderer.sprite;
@@ -97,5 +105,16 @@ public class customer : MonoBehaviour
     public void showBubble()
     {
         characterBubble.SetActive(true);
+    }
+
+    public bool getIsServicingCustomer()
+    {
+        return isServicingCustomer;
+    }
+
+    public bool getIsCustomerMoving()
+    {
+        if (customerEntering == true || customerEntering == true) return true;
+        return false;
     }
 }

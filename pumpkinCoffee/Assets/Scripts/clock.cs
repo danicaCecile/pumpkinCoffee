@@ -23,6 +23,9 @@ public class clock : MonoBehaviour
     public List<Image> places = new List<Image>();
 
     private bool isPaused = false;
+    private bool isDayOver = false;
+
+    private int day = 0;
 
     void Start()
     {
@@ -36,11 +39,20 @@ public class clock : MonoBehaviour
     {
         if (isPaused == false) incrementTimer();
         else blinkAction();
+
+        if (isDayOver == true) blinkAction();
     }
 
     public void resetDay()
     {
         timeRemaining = totalTime;
+        isDayOver = false;
+        day++;
+    }
+
+    public bool getIsDayOver()
+    {
+        return isDayOver;
     }
 
     public void pause()
@@ -113,6 +125,10 @@ public class clock : MonoBehaviour
             //Debug.Log(time[0] + ":" + time[1] + 0);
             displayTime(time);
         }
+        else
+        {
+            isDayOver = true;
+        }
     }
 
     private void displayTime(float[] time)
@@ -166,5 +182,10 @@ public class clock : MonoBehaviour
 
         float[] finalTime = {finalHours, minutes, amPm};
         return finalTime;
+    }
+
+    public int getDay()
+    {
+        return day;
     }
 }

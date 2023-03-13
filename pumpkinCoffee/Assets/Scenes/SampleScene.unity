@@ -9076,6 +9076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drinkOrder: {fileID: 1982120134}
+  gameController: {fileID: 1747605719}
   customers:
   - {fileID: 263029373}
   - {fileID: 1895469583}
@@ -9862,9 +9863,62 @@ Transform:
   m_Children:
   - {fileID: 1349888553}
   - {fileID: 1747605718}
+  - {fileID: 903764038}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &903764037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 903764038}
+  - component: {fileID: 903764039}
+  m_Layer: 0
+  m_Name: DayTransitionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &903764038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903764037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 900325020}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &903764039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903764037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb321930b0959ab43b8a5d9ecf50bc24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayTransitionContainer: {fileID: 2129917668}
+  dayOneText: {fileID: 1349155090}
+  dayTwoText: {fileID: 1889871588}
+  dayThreeText: {fileID: 1391505313}
+  partyTimeText: {fileID: 457130218}
+  dayOverText: {fileID: 1718187973}
+  checklist: {fileID: 1729136854}
+  GameController: {fileID: 1747605719}
 --- !u!1 &904871164
 GameObject:
   m_ObjectHideFlags: 0
@@ -19037,6 +19091,7 @@ GameObject:
   - component: {fileID: 1718187974}
   - component: {fileID: 1718187976}
   - component: {fileID: 1718187975}
+  - component: {fileID: 1718187977}
   m_Layer: 5
   m_Name: dayOver
   m_TagString: Untagged
@@ -19061,7 +19116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: 0}
+  m_AnchoredPosition: {x: 53, y: 0}
   m_SizeDelta: {x: 700, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718187975
@@ -19084,7 +19139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1572355977, guid: 54acb79ad0bbe2a4e948d3c061a04316, type: 3}
+  m_Sprite: {fileID: -174900792, guid: 7b042a4e349f7bb48be080c5657de3ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19102,6 +19157,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718187973}
   m_CullTransparentMesh: 1
+--- !u!95 &1718187977
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718187973}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2eeeca729176eb41b52c02627047d59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1722059970
 GameObject:
   m_ObjectHideFlags: 0
@@ -19416,6 +19491,7 @@ MonoBehaviour:
   Clock: {fileID: 1640183557}
   DrinkMaker: {fileID: 1314017777}
   DrinkSeller: {fileID: 1982120134}
+  currentCustomer: {fileID: 826448605}
 --- !u!1 &1757427747
 GameObject:
   m_ObjectHideFlags: 0
@@ -22869,7 +22945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 11, y: 8.999908}
+  m_AnchoredPosition: {x: 11, y: 8.999939}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2108643789
