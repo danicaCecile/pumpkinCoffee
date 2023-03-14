@@ -40,11 +40,6 @@ public class shopManager : MonoBehaviour
     public bank Bank;
     public gameController GameController;
 
-    //for game win conditions
-    private bool hasBunting = false;
-    private bool hasPictures = false;
-    private bool hasShelfObject = false;
-
     void Start()
     {
         currentWallColor = wallColorObject2;
@@ -68,6 +63,16 @@ public class shopManager : MonoBehaviour
         }
 
         currentShopType = shopHome;
+    }
+
+    public void closeShop()
+    {
+        if(isShopOpen == true)
+        {
+            goBack();
+            shop.SetActive(false);
+            isShopOpen = false;
+        }
     }
 
     public void goBack()
@@ -123,6 +128,18 @@ public class shopManager : MonoBehaviour
         currentWallColor.SetActive(false);
         currentWallColor = option;
         buyDecoration(option, price);
+    }
+
+    //order = bunting, shelf object, wall art
+    public bool[] getChecklistItems()
+    {
+        bool[] checklistItems = { false, false, false };
+
+        if (currentBunting != null) checklistItems[0] = true;
+        if (currentShelfObject != null) checklistItems[1] = true;
+        if (currentWallArt != null) checklistItems[2] = true;
+
+        return checklistItems;
     }
 
     //functions for changing shop type for buttons

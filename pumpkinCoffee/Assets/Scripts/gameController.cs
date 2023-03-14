@@ -8,6 +8,27 @@ public class gameController : MonoBehaviour
     public drinkMaker DrinkMaker;
     public drinkSeller DrinkSeller;
     public customer currentCustomer;
+    public shopManager shop;
+    public checklistManager checklist;
+    public endGameManager EndGameManager;
+    public dayTransitionManager DayTransitionManager;
+
+    void Start()
+    {
+        pause();
+        DayTransitionManager.startFirstDay();
+    }
+
+    public void startGame()
+    {
+        currentCustomer.getNewCustomer();
+        DrinkSeller.generateDrink();
+    }
+
+    public void end()
+    {
+        EndGameManager.end();
+    }
 
     public void pause()
     {
@@ -27,7 +48,6 @@ public class gameController : MonoBehaviour
     {
         DrinkMaker.pause();
         DrinkSeller.pause();
-
     }
 
     public void unPauseDrinkCreationAndSale()
@@ -51,6 +71,17 @@ public class gameController : MonoBehaviour
     public void resetDay()
     {
         Clock.resetDay();
+        shop.closeShop();
         currentCustomer.getNewCustomer();
+    }
+
+    public bool[] getChecklistItems()
+    {
+        return shop.getChecklistItems();
+    }
+
+    public void checkItems()
+    {
+        checklist.checkItems();
     }
 }

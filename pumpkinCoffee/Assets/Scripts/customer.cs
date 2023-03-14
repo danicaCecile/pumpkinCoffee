@@ -27,11 +27,6 @@ public class customer : MonoBehaviour
 
     private bool isServicingCustomer;
 
-    void Start()
-    {
-        getNewCustomer();
-    }
-
     void Update()
     {
         if(customerEntering == true)

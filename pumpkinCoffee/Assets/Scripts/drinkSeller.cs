@@ -25,11 +25,6 @@ public class drinkSeller : MonoBehaviour
 
     private bool isPaused = false;
 
-    void Start()
-    {
-        generateDrink();
-    }
-
     public void generateDrink()
     {
         int rand = Random.Range(0, 3);
@@ -82,7 +77,6 @@ public class drinkSeller : MonoBehaviour
             i++;
         }
 
-        Debug.Log(correctIngredients);
         if (correctIngredients == 4) return true;
         else return false;
     }

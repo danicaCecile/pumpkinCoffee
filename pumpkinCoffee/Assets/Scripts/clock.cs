@@ -27,6 +27,8 @@ public class clock : MonoBehaviour
 
     private int day = 0;
 
+    public gameController GameController;
+
     void Start()
     {
         timeRemaining = (endingHour - startingHour) * 5 * tenMinsLenInSecs;

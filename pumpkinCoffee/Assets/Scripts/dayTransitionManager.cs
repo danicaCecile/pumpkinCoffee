@@ -16,38 +16,78 @@ public class dayTransitionManager : MonoBehaviour
 
     private bool isTransitioning = false;
 
+    private bool hasGameStarted = false;
+
     void Update()
     {
-        if(GameController.isDayOver() == true && isTransitioning == false)
+        if(GameController.isDayOver() == true && isTransitioning == false && hasGameStarted == true)
         {
             isTransitioning = true;
             GameController.pause();
             dayTransitionContainer.SetActive(true);
-            StartCoroutine(activateDayTransition());
+            StartCoroutine(activateDayTransitionPart1());
         }
     }
 
-    private IEnumerator activateDayTransition()
+    private IEnumerator displayFirstDayText()
+    {
+        dayTransitionContainer.SetActive(true);
+        dayOneText.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
+        dayOneText.SetActive(false);
+        dayTransitionContainer.SetActive(false);
+
+        GameController.startGame();
+
+        hasGameStarted = true;
+        GameController.unPause();
+    }
+
+    private IEnumerator activateDayTransitionPart1()
     {
         dayOverText.SetActive(true);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         dayOverText.SetActive(false);
         checklist.SetActive(true);
+        GameController.checkItems();
+    }
 
-        yield return new WaitForSeconds(2f);
+    public void startFirstDay()
+    {
+        StartCoroutine(displayFirstDayText());
+    }
 
+    public bool getHasGameStarted()
+    {
+        return hasGameStarted;
+    }
+
+    public void startNextDay()
+    {
+        StartCoroutine(activateDayTransitionPart2());
+    }
+
+    private IEnumerator activateDayTransitionPart2()
+    {
         checklist.SetActive(false);
         activateDayTransitionText(true);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         activateDayTransitionText(false);
         dayTransitionContainer.SetActive(false);
-        GameController.unPause();
-        GameController.resetDay();
-        isTransitioning = false;
+
+        if (GameController.getDay() == 2) GameController.end();
+        else
+        {
+            GameController.unPause();
+            GameController.resetDay();
+            isTransitioning = false;
+        }
     }
 
     private void activateDayTransitionText(bool activate)
@@ -60,6 +100,10 @@ public class dayTransitionManager : MonoBehaviour
         else if(currentDay == 1)
         {
             dayThreeText.SetActive(activate);
+        }
+        else
+        {
+            partyTimeText.SetActive(activate);
         }
     }
  }
