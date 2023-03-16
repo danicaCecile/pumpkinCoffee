@@ -25,6 +25,10 @@ public class drinkSeller : MonoBehaviour
 
     private bool isPaused = false;
 
+    public Sprite up;
+    public Sprite down;
+    public SpriteRenderer bell;
+
     public void generateDrink()
     {
         int rand = Random.Range(0, 3);
@@ -104,9 +108,19 @@ public class drinkSeller : MonoBehaviour
         }
     }
 
+    private IEnumerator bellAnimation()
+    {
+        bell.sprite = down;
+
+        yield return new WaitForSeconds(0.5f);
+
+        bell.sprite = up;
+    }
+
     void OnMouseDown()
     {
         StartCoroutine(bellPressedAction());
+        StartCoroutine(bellAnimation());
     }
 
     public void pause()

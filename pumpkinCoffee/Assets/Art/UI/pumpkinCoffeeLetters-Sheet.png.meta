@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f851a0dcd40043446b2bb21776af704c
+guid: 215aba9953a95354cbfbd54d6bbc22f9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: thanksForPlayingText_0
+      name: pumpkinCoffeeLetters-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cea75dbf4b294a744935b5d745dc7d11
-      internalID: -123412136
+      spriteID: 7080e7b32d2a18c48a8cafe0248d4c13
+      internalID: -1219511941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thanksForPlayingText_1
+      name: pumpkinCoffeeLetters-Sheet_1
       rect:
         serializedVersion: 2
         x: 512
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5de946fa38f88f541975db7e75360689
-      internalID: -690832088
+      spriteID: 5c5f7913c11cf1b4f968df744adb7a9c
+      internalID: -633860854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: thanksForPlayingText_2
+      name: pumpkinCoffeeLetters-Sheet_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -172,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f157ce374d03424391c276a0ee344ac
-      internalID: 688482718
+      spriteID: 073cc2489bd77694693ae6dd0f31a4dd
+      internalID: 524252535
       vertices: []
       indices: 
       edges: []
@@ -181,7 +181,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 07856846087e1c44eb94214fc512d716
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -189,9 +189,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      thanksForPlayingText_0: -123412136
-      thanksForPlayingText_2: 688482718
-      thanksForPlayingText_1: -690832088
+      pumpkinCoffeeLetters-Sheet_2: 524252535
+      pumpkinCoffeeLetters-Sheet_0: -1219511941
+      pumpkinCoffeeLetters-Sheet_1: -633860854
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
