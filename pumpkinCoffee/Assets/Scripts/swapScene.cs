@@ -16,7 +16,7 @@ public class swapScene : MonoBehaviour
 
     private IEnumerator swapWithPause()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
         SceneManager.LoadScene(sceneName);
     }
 }

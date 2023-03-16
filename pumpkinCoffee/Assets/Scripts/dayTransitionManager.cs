@@ -14,6 +14,10 @@ public class dayTransitionManager : MonoBehaviour
 
     public gameController GameController;
 
+    public AudioClip day2Music;
+    public AudioClip day3Music;
+    public AudioClip partyTimeMusic;
+
     private bool isTransitioning = false;
 
     private bool hasGameStarted = false;
@@ -96,14 +100,17 @@ public class dayTransitionManager : MonoBehaviour
         if(currentDay == 0)
         {
             dayTwoText.SetActive(activate);
+            GameController.swapBackgroundMusic(day2Music);
         }
         else if(currentDay == 1)
         {
             dayThreeText.SetActive(activate);
+            GameController.swapBackgroundMusic(day3Music);
         }
         else
         {
             partyTimeText.SetActive(activate);
+            GameController.swapBackgroundMusic(partyTimeMusic);
         }
     }
  }

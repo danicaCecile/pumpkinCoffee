@@ -13,6 +13,8 @@ public class gameController : MonoBehaviour
     public endGameManager EndGameManager;
     public dayTransitionManager DayTransitionManager;
 
+    public AudioSource backgroundMusic;
+
     void Start()
     {
         pause();
@@ -83,5 +85,11 @@ public class gameController : MonoBehaviour
     public void checkItems()
     {
         checklist.checkItems();
+    }
+
+    public void swapBackgroundMusic(AudioClip track)
+    {
+        backgroundMusic.clip = track;
+        backgroundMusic.Play();
     }
 }

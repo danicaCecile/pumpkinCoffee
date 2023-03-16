@@ -9,6 +9,8 @@ public class cutScene : MonoBehaviour
     public GameObject text2;
     public GameObject checklist;
 
+    public AudioSource flip;
+
     public float pause = 5f;
 
     void Start()
@@ -24,15 +26,18 @@ public class cutScene : MonoBehaviour
 
         text1.SetActive(false);
         flyer.SetActive(true);
+        flip.Play();
 
         yield return new WaitForSeconds(pause);
 
         flyer.SetActive(false);
         text2.SetActive(true);
+        flip.Play();
 
         yield return new WaitForSeconds(pause);
 
         text2.SetActive(false);
         checklist.SetActive(true);
+        flip.Play();
     }
 }
