@@ -9,6 +9,11 @@ public class drinkMaker : MonoBehaviour
     public GameObject creamObject;
     public GameObject sprinklesObject;
 
+    public AudioSource drinkClink;
+    public AudioSource drinkMix;
+    public AudioSource whippedCream;
+    public AudioSource sprinkles;
+
     private SpriteRenderer mug;
     private SpriteRenderer drink;
     private SpriteRenderer cream;
@@ -47,6 +52,8 @@ public class drinkMaker : MonoBehaviour
                 drinkConfig.Add(ingredient);
             }
             else drinkConfig[0] = ingredient;
+
+            drinkClink.Play();
         }
     }
 
@@ -68,6 +75,8 @@ public class drinkMaker : MonoBehaviour
                     drinkConfig.Add(ingredient);
                 }
                 else drinkConfig[1] = ingredient;
+
+                drinkMix.Play();
             }
         }
     }
@@ -90,6 +99,8 @@ public class drinkMaker : MonoBehaviour
                     drinkConfig.Add(ingredient);
                 }
                 else drinkConfig[2] = ingredient;
+
+                whippedCream.Play();
             }
         }
     }
@@ -110,6 +121,8 @@ public class drinkMaker : MonoBehaviour
                     drinkConfig.Add(ingredient);
                 }
                 else drinkConfig[3] = ingredient;
+
+                sprinkles.Play();
             }
         }
     }

@@ -91,43 +91,47 @@ public class shopManager : MonoBehaviour
         shopHome.SetActive(false);
     }
 
-    private int buyDecoration(GameObject decoration, float price)
+    private void showBunting(GameObject option, float price)
     {
         if (Bank.canAfford(price))
         {
-            decoration.SetActive(true);
+            if (currentBunting != null) currentBunting.SetActive(false);
+            currentBunting = option;
+            option.SetActive(true);
             Bank.subBal(price);
-            return 0;
         }
-        else return -1;
-    }
-
-    private void showBunting(GameObject option, float price)
-    {
-        if (currentBunting != null) currentBunting.SetActive(false);
-        currentBunting = option;
-        buyDecoration(option, price);
     }
 
     private void showWallArt(GameObject option, float price)
     {
-        if (currentWallArt != null) currentWallArt.SetActive(false);
-        currentWallArt = option;
-        buyDecoration(option, price);
+        if (Bank.canAfford(price))
+        {
+            if (currentWallArt != null) currentWallArt.SetActive(false);
+            currentWallArt = option;
+            option.SetActive(true);
+            Bank.subBal(price);
+        }
     }
 
     private void showShelfObject(GameObject option, float price)
     {
-        if (currentShelfObject != null) currentShelfObject.SetActive(false);
-        currentShelfObject = option;
-        buyDecoration(option, price);
+        if (Bank.canAfford(price))
+        {
+            if (currentShelfObject != null) currentShelfObject.SetActive(false);
+            currentShelfObject = option;
+            option.SetActive(true);
+            Bank.subBal(price);
+        }
     }
 
     private void showWallColor(GameObject option, float price)
     {
-        currentWallColor.SetActive(false);
-        currentWallColor = option;
-        buyDecoration(option, price);
+        if (Bank.canAfford(price)) {
+            currentWallColor.SetActive(false);
+            currentWallColor = option;
+            option.SetActive(true);
+            Bank.subBal(price);
+        }
     }
 
     //order = bunting, shelf object, wall art

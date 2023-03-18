@@ -100,17 +100,17 @@ public class dayTransitionManager : MonoBehaviour
         if(currentDay == 0)
         {
             dayTwoText.SetActive(activate);
-            GameController.swapBackgroundMusic(day2Music);
+            if(activate == true) GameController.swapBackgroundMusic(day2Music);
         }
         else if(currentDay == 1)
         {
             dayThreeText.SetActive(activate);
-            GameController.swapBackgroundMusic(day3Music);
+            if (activate == true) GameController.swapBackgroundMusic(day3Music);
         }
         else
         {
             partyTimeText.SetActive(activate);
-            GameController.swapBackgroundMusic(partyTimeMusic);
+            if (activate == true) GameController.swapBackgroundMusic(partyTimeMusic);
         }
     }
  }

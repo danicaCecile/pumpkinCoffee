@@ -2014,7 +2014,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6c002667cbda1844f90f4327baa5fa68, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.85
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4233,6 +4233,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &388375918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4951,6 +4963,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &463807571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5245,6 +5269,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: toggleShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5930,6 +5966,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &561319045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6204,6 +6252,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: buntingShopNav
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6499,6 +6559,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: buySpookyArt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7070,6 +7142,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: buyModernArt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7657,6 +7741,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: buyPottedPlant
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9666,6 +9762,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &945558681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10643,6 +10751,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: buySpiderWeb
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12982,6 +13102,7 @@ MonoBehaviour:
   drinkObject: {fileID: 355021219}
   creamObject: {fileID: 1674412374}
   sprinklesObject: {fileID: 1506294843}
+  drinkClink: {fileID: 0}
 --- !u!1 &1319142617
 GameObject:
   m_ObjectHideFlags: 0
@@ -14219,6 +14340,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1394285230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14857,6 +14990,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1455763014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15170,6 +15315,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: buyGreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18347,6 +18504,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1764632462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18859,6 +19028,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: wallColorShopNav
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19536,6 +19717,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1918825553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19662,6 +19855,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: buyNatureArt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20442,6 +20647,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349888552}
         m_TargetAssemblyTypeName: shopManager, Assembly-CSharp
         m_MethodName: buyOrangePurpleBunting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21596,9 +21813,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6889934182522320081, guid: 901a99604437f1e42afa3a38ae667e2e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889934182522320081, guid: 901a99604437f1e42afa3a38ae667e2e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889934182522320081, guid: 901a99604437f1e42afa3a38ae667e2e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1349888552}
+    - target: {fileID: 6889934182522320081, guid: 901a99604437f1e42afa3a38ae667e2e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 770702599}
+    - target: {fileID: 6889934182522320081, guid: 901a99604437f1e42afa3a38ae667e2e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889934182522320081, guid: 901a99604437f1e42afa3a38ae667e2e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: playSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889934182522320081, guid: 901a99604437f1e42afa3a38ae667e2e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: playAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889934182522320081, guid: 901a99604437f1e42afa3a38ae667e2e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6889934182522320083, guid: 901a99604437f1e42afa3a38ae667e2e, type: 3}
       propertyPath: m_Name
       value: Button
