@@ -12,7 +12,7 @@ public class drinkMaker : MonoBehaviour
     public AudioSource drinkClink;
     public AudioSource drinkMix;
     public AudioSource whippedCream;
-    public AudioSource sprinkles;
+    public AudioSource sprinklesShake;
 
     private SpriteRenderer mug;
     private SpriteRenderer drink;
@@ -122,7 +122,7 @@ public class drinkMaker : MonoBehaviour
                 }
                 else drinkConfig[3] = ingredient;
 
-                sprinkles.Play();
+                sprinklesShake.Play();
             }
         }
     }

@@ -10,7 +10,9 @@ public class drinkSeller : MonoBehaviour
     public GameObject drink;
     public GameObject cream;
     public GameObject sprinkles;
-    
+
+    public AudioSource bellDing;
+
     public List<Sprite> mugOptions = new List<Sprite>();
     public List<Sprite> drinkOptions = new List<Sprite>();
     public List<Sprite> creamOptions = new List<Sprite>();
@@ -110,6 +112,7 @@ public class drinkSeller : MonoBehaviour
 
     private IEnumerator bellAnimation()
     {
+        bellDing.Play();
         bell.sprite = down;
 
         yield return new WaitForSeconds(0.5f);

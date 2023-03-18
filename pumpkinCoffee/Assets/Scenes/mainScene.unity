@@ -1176,6 +1176,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 770702599}
+        m_TargetAssemblyTypeName: playAudio, Assembly-CSharp
+        m_MethodName: playSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &88688158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8421,6 +8433,7 @@ MonoBehaviour:
   - {fileID: 1895469586}
   - {fileID: 1445597815}
   - {fileID: 1540224505}
+  doorBell: {fileID: 1010914242}
 --- !u!1 &828149104
 GameObject:
   m_ObjectHideFlags: 0
@@ -9168,6 +9181,7 @@ MonoBehaviour:
   day2Music: {fileID: 8300000, guid: 37a8305603ef419469f8b092c2a4255d, type: 3}
   day3Music: {fileID: 8300000, guid: c47f2b718fae1fa40bc55ed2e19d86ee, type: 3}
   partyTimeMusic: {fileID: 8300000, guid: c6e73cdd051fa47499ebfcd08193cf5e, type: 3}
+  pageFlip: {fileID: 1988878527}
 --- !u!1 &904871164
 GameObject:
   m_ObjectHideFlags: 0
@@ -13102,7 +13116,10 @@ MonoBehaviour:
   drinkObject: {fileID: 355021219}
   creamObject: {fileID: 1674412374}
   sprinklesObject: {fileID: 1506294843}
-  drinkClink: {fileID: 0}
+  drinkClink: {fileID: 826122416}
+  drinkMix: {fileID: 1613084604}
+  whippedCream: {fileID: 1488594610}
+  sprinklesShake: {fileID: 1014319529}
 --- !u!1 &1319142617
 GameObject:
   m_ObjectHideFlags: 0
@@ -20221,6 +20238,7 @@ MonoBehaviour:
   drink: {fileID: 1838430356}
   cream: {fileID: 1740802003}
   sprinkles: {fileID: 155242397}
+  bellDing: {fileID: 80248334}
   mugOptions:
   - {fileID: 21300000, guid: b56dedb18786fb4498ffcb63a7ad3af3, type: 3}
   - {fileID: 21300000, guid: 2be3bd98353a64d47b7e8f23c8179666, type: 3}
@@ -21946,9 +21964,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8082965549404252444, guid: cd6b674bb3231d841825525e5c260b1c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082965549404252444, guid: cd6b674bb3231d841825525e5c260b1c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082965549404252444, guid: cd6b674bb3231d841825525e5c260b1c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 903764039}
+    - target: {fileID: 8082965549404252444, guid: cd6b674bb3231d841825525e5c260b1c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 770702599}
+    - target: {fileID: 8082965549404252444, guid: cd6b674bb3231d841825525e5c260b1c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082965549404252444, guid: cd6b674bb3231d841825525e5c260b1c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: playSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082965549404252444, guid: cd6b674bb3231d841825525e5c260b1c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: playAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082965549404252444, guid: cd6b674bb3231d841825525e5c260b1c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd6b674bb3231d841825525e5c260b1c, type: 3}
 --- !u!1001 &8289031025068852226

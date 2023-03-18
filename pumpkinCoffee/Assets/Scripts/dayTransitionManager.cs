@@ -11,12 +11,13 @@ public class dayTransitionManager : MonoBehaviour
     public GameObject partyTimeText;
     public GameObject dayOverText;
     public GameObject checklist;
-
     public gameController GameController;
 
     public AudioClip day2Music;
     public AudioClip day3Music;
     public AudioClip partyTimeMusic;
+
+    public AudioSource pageFlip;
 
     private bool isTransitioning = false;
 
@@ -55,6 +56,7 @@ public class dayTransitionManager : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
+        pageFlip.Play();
         dayOverText.SetActive(false);
         checklist.SetActive(true);
         GameController.checkItems();
@@ -77,6 +79,8 @@ public class dayTransitionManager : MonoBehaviour
 
     private IEnumerator activateDayTransitionPart2()
     {
+        yield return new WaitForSeconds(0.5f);
+
         checklist.SetActive(false);
         activateDayTransitionText(true);
 

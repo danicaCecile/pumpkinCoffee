@@ -27,6 +27,8 @@ public class customer : MonoBehaviour
 
     private bool isServicingCustomer;
 
+    public AudioSource doorBell;
+
     void Update()
     {
         if(customerEntering == true)
@@ -61,6 +63,7 @@ public class customer : MonoBehaviour
         gameController.pauseDrinkCreationAndSale();
         customerEntering = true;
         isServicingCustomer = true;
+        doorBell.Play();
     }
 
     public void customerLeave()
