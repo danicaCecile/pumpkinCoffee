@@ -23,6 +23,9 @@ public class dayTransitionManager : MonoBehaviour
 
     private bool hasGameStarted = false;
 
+    public GameObject goodEndingText;
+    public GameObject badEndingText;
+
     void Update()
     {
         if(GameController.isDayOver() == true && isTransitioning == false && hasGameStarted == true)
@@ -87,15 +90,24 @@ public class dayTransitionManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         activateDayTransitionText(false);
-        dayTransitionContainer.SetActive(false);
 
-        if (GameController.getDay() == 2) GameController.end();
+        if (GameController.getDay() == 2)
+        {
+            GameObject endingText = null;
+            if (GameController.didWin() == true) endingText = goodEndingText;
+            else endingText = badEndingText;
+            endingText.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            endingText.SetActive(false);
+            GameController.end();
+        }
         else
         {
             GameController.unPause();
             GameController.resetDay();
             isTransitioning = false;
         }
+        dayTransitionContainer.SetActive(false);
     }
 
     private void activateDayTransitionText(bool activate)

@@ -28,12 +28,12 @@ public class customer : MonoBehaviour
     private bool isServicingCustomer;
 
     public AudioSource doorBell;
-
+    public float speed = 0.07f;
     void Update()
     {
         if(customerEntering == true)
         {
-            currentCustomer.transform.position += new Vector3(-0.004f, 0, 0);
+            currentCustomer.transform.position += new Vector3(speed*-1, 0, 0);
             if (currentCustomer.transform.position.x <= 2.6f)
             {
                 customerEntering = false;
@@ -44,12 +44,13 @@ public class customer : MonoBehaviour
 
         if (customerLeaving == true)
         {
-            currentCustomer.transform.position += new Vector3(0.004f, 0, 0);
-            if (currentCustomer.transform.position.x >= 4.25f)
+            currentCustomer.transform.position += new Vector3(speed, 0, 0);
+            if (currentCustomer.transform.position.x >= 5f)
             {
                 customerLeaving = false;
                 isServicingCustomer = false;
                 gameController.unPauseDrinkCreationAndSale();
+                currentCustomer.SetActive(false);
                 if (gameController.isDayOver() != true) getNewCustomer();
             }
         }
@@ -60,6 +61,7 @@ public class customer : MonoBehaviour
         int rand = Random.Range(0, 4);
         currentCustomer = customers[rand];
         customerIndex = rand;
+        currentCustomer.SetActive(true);
         gameController.pauseDrinkCreationAndSale();
         customerEntering = true;
         isServicingCustomer = true;

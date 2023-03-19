@@ -92,4 +92,9 @@ public class gameController : MonoBehaviour
         backgroundMusic.clip = track;
         backgroundMusic.Play();
     }
+
+    public bool didWin()
+    {
+        return EndGameManager.didWin();
+    }
 }
