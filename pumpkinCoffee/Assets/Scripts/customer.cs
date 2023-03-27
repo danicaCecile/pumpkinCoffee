@@ -29,7 +29,10 @@ public class customer : MonoBehaviour
 
     public AudioSource doorBell;
     public float speed = 0.07f;
-    void Update()
+
+    private int customerCount = 0;
+
+    void FixedUpdate()
     {
         if(customerEntering == true)
         {
@@ -51,7 +54,7 @@ public class customer : MonoBehaviour
                 isServicingCustomer = false;
                 gameController.unPauseDrinkCreationAndSale();
                 currentCustomer.SetActive(false);
-                if (gameController.isDayOver() != true) getNewCustomer();
+                if (gameController.isDayOver() == false && gameController.getIsTrixieAtWindow() == false) getNewCustomer();
             }
         }
     }
@@ -66,6 +69,7 @@ public class customer : MonoBehaviour
         customerEntering = true;
         isServicingCustomer = true;
         doorBell.Play();
+        customerCount++;
     }
 
     public void customerLeave()
@@ -116,5 +120,15 @@ public class customer : MonoBehaviour
     {
         if (customerEntering == true || customerEntering == true) return true;
         return false;
+    }
+
+    public int getCustomerCount()
+    {
+        return customerCount;
+    }
+
+    public void resetCustomerCount()
+    {
+        customerCount = 0;
     }
 }

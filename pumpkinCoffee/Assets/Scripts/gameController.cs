@@ -12,6 +12,7 @@ public class gameController : MonoBehaviour
     public checklistManager checklist;
     public endGameManager EndGameManager;
     public dayTransitionManager DayTransitionManager;
+    public trixieController Trixie;
 
     public AudioSource backgroundMusic;
 
@@ -65,6 +66,11 @@ public class gameController : MonoBehaviour
         return clockDayOver && !isServicingCustomer;
     }
 
+    public bool getIsServicingCustomer()
+    {
+        return currentCustomer.getIsServicingCustomer();
+    }
+
     public int getDay()
     {
         return Clock.getDay();
@@ -96,5 +102,20 @@ public class gameController : MonoBehaviour
     public bool didWin()
     {
         return EndGameManager.didWin();
+    }
+
+    public int getCustomerCount()
+    {
+        return currentCustomer.getCustomerCount();
+    }
+
+    public void resetCustomerCount()
+    {
+        currentCustomer.resetCustomerCount();
+    }
+    
+    public bool getIsTrixieAtWindow()
+    {
+        return Trixie.getIsTrixieAtWindow();
     }
 }

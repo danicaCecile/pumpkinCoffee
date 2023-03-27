@@ -33,6 +33,8 @@ AnimationClip:
       value: {fileID: 2077888680, guid: 3317dd1805163ea4797c37ee852fe58d, type: 3}
     - time: 2.1666667
       value: {fileID: 865247279, guid: 3317dd1805163ea4797c37ee852fe58d, type: 3}
+    - time: 2.3833334
+      value: {fileID: 865247279, guid: 3317dd1805163ea4797c37ee852fe58d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -59,12 +61,13 @@ AnimationClip:
     - {fileID: 79137521, guid: 3317dd1805163ea4797c37ee852fe58d, type: 3}
     - {fileID: 2077888680, guid: 3317dd1805163ea4797c37ee852fe58d, type: 3}
     - {fileID: 865247279, guid: 3317dd1805163ea4797c37ee852fe58d, type: 3}
+    - {fileID: 865247279, guid: 3317dd1805163ea4797c37ee852fe58d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.1833334
+    m_StopTime: 2.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -83,4 +86,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 2.25
+    functionName: deactivateGameObject
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
