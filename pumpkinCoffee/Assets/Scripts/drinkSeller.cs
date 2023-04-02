@@ -58,6 +58,22 @@ public class drinkSeller : MonoBehaviour
         customerDrinkConfig.Add(chosenSprinkles);
     }
 
+    private int isPumpkinDrink()
+    {
+        int correctIngredients = 0;
+        if (customerDrinkConfig[0] == mugOptions[2]) correctIngredients++;
+        if (customerDrinkConfig[1] == drinkOptions[2]) correctIngredients++;
+        return correctIngredients;
+    }
+
+    private int isHeartDrink()
+    {
+        int correctIngredients = 0;
+        if (customerDrinkConfig[0] == mugOptions[0]) correctIngredients++;
+        if (customerDrinkConfig[3] == sprinklesOptions[1]) correctIngredients++;
+        return correctIngredients;
+    }
+
     public void clearDrink()
     {
         customerDrinkConfig.Clear();

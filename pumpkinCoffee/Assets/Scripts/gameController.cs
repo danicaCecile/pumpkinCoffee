@@ -16,6 +16,8 @@ public class gameController : MonoBehaviour
 
     public AudioSource backgroundMusic;
 
+    private int trixieDrinkStage = 0;
+
     void Start()
     {
         pause();
@@ -80,6 +82,11 @@ public class gameController : MonoBehaviour
     {
         Clock.resetDay();
         shop.closeShop();
+        currentCustomer.getNewCustomer();
+    }
+
+    public void getNewCustomer()
+    {
         currentCustomer.getNewCustomer();
     }
 

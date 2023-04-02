@@ -21,8 +21,10 @@ public class trixieController : MonoBehaviour
     private bool isTalkingToTrixie = false;
     private bool isTrixieMoving = false;
     private bool isTrixieAtWindow = false;
+    private bool isTrixieLeaving = false;
+    private bool isTrixieArriving = false;
 
-    public float speed = 0.07f;
+    public float speed = 0.1f;
 
     public GameObject textBubble;
 
@@ -40,10 +42,20 @@ public class trixieController : MonoBehaviour
     public List<string> yesText = new List<string>();
 
     public List<string> noText = new List<string>();
-    void Start()
-    {
-        
-    }
+
+    public SpriteRenderer trixieRender;
+    public Sprite happyFace;
+    public Sprite sadFace;
+    public Sprite neutralFace;
+    public GameObject happyHeart;
+    public GameObject sadSquiggle;
+    public Animator blinkAnimator;
+
+    public GameObject yesArrow;
+    public GameObject noArrow;
+    public GameObject nevermind;
+
+    private bool readyForDrink = false; 
 
     void Update()
     {
@@ -70,7 +82,7 @@ public class trixieController : MonoBehaviour
 
             if (GameController.getCustomerCount() == 7 && hasApproached3 == false && GameController.getIsServicingCustomer() == false)
             {
-                isTrixieMoving = true;
+                isTrixieArriving = true;
                 hasApproached3 = true;
             }
         }
@@ -78,13 +90,24 @@ public class trixieController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(isTrixieMoving == true)
+        if(isTrixieArriving == true)
         {
             trixieWindow.transform.position += new Vector3(0, speed, 0);
             if (trixieWindow.transform.position.y >= 1.7f)
             {
-                isTrixieMoving = false;
+                isTrixieArriving = false;
                 StartCoroutine(displayFirstWindowBubble());
+            }
+        }
+
+        if (isTrixieLeaving == true)
+        {
+            trixieWindow.transform.position += new Vector3(0, -speed, 0);
+            if (trixieWindow.transform.position.y <= 0.5f)
+            {
+                GameController.getNewCustomer();
+                isTrixieLeaving = false;
+                isTrixieAtWindow = false;
             }
         }
     }
@@ -100,6 +123,18 @@ public class trixieController : MonoBehaviour
         textBubble.SetActive(true);
         currentText = introductionText[0];
         text.SetText(currentText);
+    }
+
+    private void switchToEmote(Sprite emote)
+    {
+        blinkAnimator.enabled = false;
+        trixieRender.sprite = emote;
+    }
+
+    private void switchToNeutral()
+    {
+        blinkAnimator.enabled = true;
+        trixieRender.sprite = neutralFace;
     }
 
     private void nextTextOption(List<string> t)
@@ -126,36 +161,59 @@ public class trixieController : MonoBehaviour
         {
             introductionArrowButton.SetActive(false);
             textSpace.SetActive(false);
-
             yesAndNoButtons.SetActive(true);
         }
     }
 
     public void yes()
     {
-        textSpace.SetActive(true);
         yesAndNoButtons.SetActive(false);
-        currentText = yesText[0];
-        text.SetText(currentText);
-        currentTextCounter = 0;
+        yesArrow.SetActive(true);
+        switchToEmote(happyFace);
+        happyHeart.SetActive(true);
     }
 
     public void no()
     {
-        textSpace.SetActive(true);
+        textSpace.SetActive(false);
+        nevermind.SetActive(false);
         yesAndNoButtons.SetActive(false);
-        currentText = noText[0];
-        text.SetText(currentText);
-        currentTextCounter = 0;
+        noArrow.SetActive(true);
+        switchToEmote(sadFace);
+        sadSquiggle.SetActive(true);
+        currentTextCounter = -1;
+        readyForDrink = false;
     }
 
     public void displayYesText()
     {
-        displayText(yesText);
+        switchToNeutral();
+        textSpace.SetActive(true);
+        currentText = yesText[0];
+        text.SetText(currentText);
+        yesArrow.SetActive(false);
+        happyHeart.SetActive(false);
+        nevermind.SetActive(true);
+        readyForDrink = true;
     }
 
     public void displayNoText()
     {
-        displayText(noText);
+        switchToNeutral();
+        textSpace.SetActive(true);
+       
+        sadSquiggle.SetActive(false);
+
+        bool isOption = displayText(noText);
+        if(isOption == true)
+        {
+            triggerLeave();
+        }
     }
-}
+
+    public void triggerLeave()
+    {
+        isTrixieLeaving = true;
+        textBubble.SetActive(false);
+    }
+ }
