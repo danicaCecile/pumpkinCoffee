@@ -66,7 +66,6 @@ public class clock : MonoBehaviour
     public void unPause()
     {
         isPaused = false;
-
         setTimerActive(true);
     }
 

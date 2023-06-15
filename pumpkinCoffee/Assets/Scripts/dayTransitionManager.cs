@@ -51,6 +51,7 @@ public class dayTransitionManager : MonoBehaviour
 
         hasGameStarted = true;
         GameController.unPause();
+        GameController.pauseDrinkCreationAndSale();
     }
 
     private IEnumerator activateDayTransitionPart1()
@@ -104,6 +105,7 @@ public class dayTransitionManager : MonoBehaviour
         else
         {
             GameController.unPause();
+            GameController.pauseDrinkCreationAndSale();
             GameController.resetDay();
             isTransitioning = false;
         }

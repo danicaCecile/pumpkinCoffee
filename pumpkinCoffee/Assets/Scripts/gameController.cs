@@ -13,7 +13,7 @@ public class gameController : MonoBehaviour
     public endGameManager EndGameManager;
     public dayTransitionManager DayTransitionManager;
     public trixieController Trixie;
-
+    public trixieControllerInside trixieInside;
     public AudioSource backgroundMusic;
 
     private int trixieDrinkStage = 0;
@@ -65,7 +65,13 @@ public class gameController : MonoBehaviour
     {
         bool clockDayOver = Clock.getIsDayOver();
         bool isServicingCustomer = currentCustomer.getIsServicingCustomer();
-        return clockDayOver && !isServicingCustomer;
+        bool isTrixieActuallyAtWindow = Trixie.getIsTrixieActuallyAtWindow();
+        return clockDayOver && !isServicingCustomer && !isTrixieActuallyAtWindow;
+    }
+
+    public bool isTimeUp()
+    {
+        return Clock.getIsDayOver();
     }
 
     public bool getIsServicingCustomer()
@@ -87,7 +93,11 @@ public class gameController : MonoBehaviour
 
     public void getNewCustomer()
     {
-        currentCustomer.getNewCustomer();
+        if (Clock.getIsDayOver() == false)
+        {
+            currentCustomer.getNewCustomer();
+            DrinkSeller.generateDrink();
+        }
     }
 
     public bool[] getChecklistItems()
@@ -124,5 +134,57 @@ public class gameController : MonoBehaviour
     public bool getIsTrixieAtWindow()
     {
         return Trixie.getIsTrixieAtWindow();
+    }
+
+    public bool getIsTrixieInside()
+    {
+        return trixieInside.getIsTrixieInside();
+    }
+    public bool getIsTrixieReady()
+    {
+        return Trixie.getReadyForDrink();
+    }
+
+    public void nextTrixieDrinkStage()
+    {
+        trixieDrinkStage++;
+    }
+
+    public int getTrixieDrinkStage()
+    {
+        return trixieDrinkStage;
+    }
+
+    public void tryAgainPumpkin()
+    {
+        if(getIsTrixieAtWindow() == true)
+        {
+            Trixie.tryAgainPumpkinDrink();
+        }
+    }
+
+    public void oneCorrectPumpkin()
+    {
+        Trixie.oneCorrectIngredient0();
+    }
+
+    public void twoCorrectPumpkin()
+    {
+        Trixie.twoCorrectIngredient0();
+    }
+
+    public void showBunting(GameObject option)
+    {
+        shop.showBunting(option, 00);
+    }
+
+    public void showWallArt(GameObject option)
+    {
+        shop.showWallArt(option, 00);
+    }
+
+    public void showShelfObject(GameObject option)
+    {
+        shop.showShelfObject(option, 00);
     }
 }

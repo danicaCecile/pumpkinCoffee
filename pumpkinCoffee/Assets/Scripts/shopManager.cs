@@ -91,7 +91,7 @@ public class shopManager : MonoBehaviour
         shopHome.SetActive(false);
     }
 
-    private void showBunting(GameObject option, float price)
+    public void showBunting(GameObject option, float price)
     {
         if (Bank.canAfford(price))
         {
@@ -102,7 +102,7 @@ public class shopManager : MonoBehaviour
         }
     }
 
-    private void showWallArt(GameObject option, float price)
+    public void showWallArt(GameObject option, float price)
     {
         if (Bank.canAfford(price))
         {
@@ -113,7 +113,7 @@ public class shopManager : MonoBehaviour
         }
     }
 
-    private void showShelfObject(GameObject option, float price)
+    public void showShelfObject(GameObject option, float price)
     {
         if (Bank.canAfford(price))
         {

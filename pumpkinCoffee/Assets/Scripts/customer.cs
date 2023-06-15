@@ -54,7 +54,7 @@ public class customer : MonoBehaviour
                 isServicingCustomer = false;
                 gameController.unPauseDrinkCreationAndSale();
                 currentCustomer.SetActive(false);
-                if (gameController.isDayOver() == false && gameController.getIsTrixieAtWindow() == false) getNewCustomer();
+                if (gameController.isDayOver() == false && gameController.getIsTrixieAtWindow() == false && gameController.getIsTrixieInside() == false) getNewCustomer();
             }
         }
     }

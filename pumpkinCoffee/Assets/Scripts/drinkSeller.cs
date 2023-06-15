@@ -22,6 +22,7 @@ public class drinkSeller : MonoBehaviour
 
     public customer currentCustomer;
     public bank bank;
+    public gameController GameController;
 
     public float drinkCost = 10f;
 
@@ -60,18 +61,33 @@ public class drinkSeller : MonoBehaviour
 
     private int isPumpkinDrink()
     {
+        List<Sprite> userDrinkConfig = userDrink.getConfig();
         int correctIngredients = 0;
-        if (customerDrinkConfig[0] == mugOptions[2]) correctIngredients++;
-        if (customerDrinkConfig[1] == drinkOptions[2]) correctIngredients++;
+
+        if (userDrinkConfig.Count < 4) return -1;
+        if (userDrinkConfig[0] == mugOptions[2]) correctIngredients++;
+        if (userDrinkConfig[1] == drinkOptions[2] || userDrinkConfig[2] == creamOptions[1]) correctIngredients++;
+
         return correctIngredients;
     }
 
     private int isHeartDrink()
     {
+        List<Sprite> userDrinkConfig = userDrink.getConfig();
         int correctIngredients = 0;
-        if (customerDrinkConfig[0] == mugOptions[0]) correctIngredients++;
-        if (customerDrinkConfig[3] == sprinklesOptions[1]) correctIngredients++;
+
+        if (userDrinkConfig.Count < 4) return -1;
+        if (userDrinkConfig[0] == mugOptions[0]) correctIngredients++;
+        if (userDrinkConfig[1] == drinkOptions[1] || userDrinkConfig[3] == sprinklesOptions[1]) correctIngredients++;
+
         return correctIngredients;
+    }
+
+    private Sprite isFavoriteDrink()
+    {
+        List<Sprite> userDrinkConfig = userDrink.getConfig();
+        if (userDrinkConfig.Count < 2) return null;
+        else return userDrinkConfig[0];
     }
 
     public void clearDrink()
@@ -95,6 +111,7 @@ public class drinkSeller : MonoBehaviour
         foreach (Sprite userIngredient in userDrinkConfig)
         {
             Sprite customerIngredient = customerDrinkConfig[i];
+            
             if (customerIngredient == userIngredient) correctIngredients++;
             i++;
         }
@@ -105,24 +122,67 @@ public class drinkSeller : MonoBehaviour
 
     private IEnumerator bellPressedAction()
     {
-        if(isPaused == false)
+        Debug.Log(GameController.getIsTrixieReady());
+        Debug.Log(GameController.getTrixieDrinkStage());
+        Debug.Log(customerDrinkConfig[0]);
+        if (isPaused == false)
         {
-            bool didWin = isCorrectDrink();
-            if (didWin == true)
+            if(GameController.getIsTrixieReady() == true)
             {
-                bank.addBal(drinkCost);
+                if(GameController.getTrixieDrinkStage() == 0){
+                    //compare to pumpkin drink
+                    if (isPumpkinDrink() == -1)
+                    {
+                        GameController.tryAgainPumpkin();
+                    }
+                    else if (isPumpkinDrink() == 0) GameController.tryAgainPumpkin();
+                    else if (isPumpkinDrink() == 1)
+                    {
+                        bank.addBal(drinkCost);
+                        GameController.oneCorrectPumpkin();
+                    }//could be better
+                    else if (isPumpkinDrink() == 2)
+                    {
+                        bank.addBal(drinkCost);
+                        GameController.twoCorrectPumpkin();
+                    }//perfect
+                }
+                else if(GameController.getTrixieDrinkStage() == 1)
+                {
+                    //compare to heart drink
+                    if (isHeartDrink() == 0) Debug.Log("no correct ingredients");//bad response
+                    else if (isHeartDrink() == 1) bank.addBal(drinkCost); //could be better
+                    else if (isHeartDrink() == 2) bank.addBal(drinkCost); //perfect
+                }
+                else
+                {
+                    //make her your favorite drink (only condition is that it has to have a mug and a drink)
+                    if (isFavoriteDrink() == null) Debug.Log("missing drink or mug");
+                    else bank.addBal(drinkCost);
+                }
+
+                clearDrink();
+                userDrink.clearDrink();
             }
+            else
+            {
+                bool didWin = isCorrectDrink();
+                if (didWin == true)
+                {
+                    bank.addBal(drinkCost);
+                }
 
-            clearDrink();
+                clearDrink();
 
-            userDrink.clearDrink();
-            currentCustomer.emote(didWin);
+                userDrink.clearDrink();
+                currentCustomer.emote(didWin);
 
-            yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1f);
 
-            currentCustomer.hideBubble();
-            currentCustomer.customerLeave();
-            generateDrink();
+                currentCustomer.hideBubble();
+                currentCustomer.customerLeave();
+                generateDrink();
+            }
         }
     }
 

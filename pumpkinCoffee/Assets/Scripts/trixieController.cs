@@ -23,6 +23,7 @@ public class trixieController : MonoBehaviour
     private bool isTrixieAtWindow = false;
     private bool isTrixieLeaving = false;
     private bool isTrixieArriving = false;
+    private bool isTrixieActuallyAtWindow = false;
 
     public float speed = 0.1f;
 
@@ -40,8 +41,19 @@ public class trixieController : MonoBehaviour
     private string currentText = null;
 
     public List<string> yesText = new List<string>();
-
     public List<string> noText = new List<string>();
+
+    public List<string> tryAgainText = new List<string>();
+    public GameObject tryAgainButton;
+
+    public List<string> oneCorrectText = new List<string>();
+    public GameObject oneCorrectButton0;
+    public GameObject oneCorrectButton1;
+
+    public List<string> twoCorrectText = new List<string>();
+    public GameObject twoCorrectButton0;
+    public GameObject twoCorrectButton1;
+    public GameObject craftButtons;
 
     public SpriteRenderer trixieRender;
     public Sprite happyFace;
@@ -55,7 +67,10 @@ public class trixieController : MonoBehaviour
     public GameObject noArrow;
     public GameObject nevermind;
 
-    private bool readyForDrink = false; 
+    private bool readyForDrink = false;
+    public GameObject bunting;
+    public GameObject art;
+    public GameObject shelfObject;
 
     void Update()
     {
@@ -75,12 +90,12 @@ public class trixieController : MonoBehaviour
 
             if (GameController.getCustomerCount() == 7 && hasApproached2 == false)
             {
-                isTrixieAtWindow = true;
                 trixieApproaching2.SetActive(true);
                 hasApproached2 = true;
+                isTrixieAtWindow = true;
             }
 
-            if (GameController.getCustomerCount() == 7 && hasApproached3 == false && GameController.getIsServicingCustomer() == false)
+            if (GameController.getCustomerCount() == 7 && hasApproached3 == false && GameController.getIsServicingCustomer() == false && GameController.isTimeUp() == false)
             {
                 isTrixieArriving = true;
                 hasApproached3 = true;
@@ -90,6 +105,7 @@ public class trixieController : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Debug.Log(isTrixieLeaving);
         if(isTrixieArriving == true)
         {
             trixieWindow.transform.position += new Vector3(0, speed, 0);
@@ -97,6 +113,7 @@ public class trixieController : MonoBehaviour
             {
                 isTrixieArriving = false;
                 StartCoroutine(displayFirstWindowBubble());
+                isTrixieActuallyAtWindow = true;
             }
         }
 
@@ -108,10 +125,15 @@ public class trixieController : MonoBehaviour
                 GameController.getNewCustomer();
                 isTrixieLeaving = false;
                 isTrixieAtWindow = false;
+                isTrixieActuallyAtWindow = false;
             }
         }
     }
 
+    public bool getIsTrixieActuallyAtWindow()
+    {
+        return isTrixieActuallyAtWindow;
+    }
     public bool getIsTrixieAtWindow()
     {
         return isTrixieAtWindow;
@@ -194,6 +216,7 @@ public class trixieController : MonoBehaviour
         yesArrow.SetActive(false);
         happyHeart.SetActive(false);
         nevermind.SetActive(true);
+        tryAgainButton.SetActive(false);
         readyForDrink = true;
     }
 
@@ -213,7 +236,98 @@ public class trixieController : MonoBehaviour
 
     public void triggerLeave()
     {
+        Debug.Log(":3");
         isTrixieLeaving = true;
         textBubble.SetActive(false);
     }
- }
+
+    public bool getReadyForDrink()
+    {
+        return readyForDrink;
+    }
+
+    public void tryAgainPumpkinDrink()
+    {
+        readyForDrink = false;
+        nevermind.SetActive(false);
+        tryAgainButton.SetActive(true);
+        currentTextCounter = -1;
+        displayText(tryAgainText);
+    }
+
+    public void oneCorrectIngredient0()
+    {
+        readyForDrink = false;
+        currentTextCounter = -1;
+        textSpace.SetActive(false);
+        switchToEmote(happyFace);
+        oneCorrectButton0.SetActive(true);
+        happyHeart.SetActive(true);
+        nevermind.SetActive(false);
+    }
+
+    public void oneCorrectIngredient1()
+    {
+        textSpace.SetActive(true);
+        switchToNeutral();
+        happyHeart.SetActive(false);
+        oneCorrectButton0.SetActive(false);
+        oneCorrectButton1.SetActive(true);
+        displayText(oneCorrectText);
+
+    }
+    public void twoCorrectIngredient0()
+    {
+        readyForDrink = false;
+        currentTextCounter = -1;
+        textSpace.SetActive(false);
+        switchToEmote(happyFace);
+        twoCorrectButton0.SetActive(true);
+        happyHeart.SetActive(true);
+        nevermind.SetActive(false);
+    }
+
+    private int optionCounter = 0;
+    public void twoCorrectIngredient1()
+    {
+        textSpace.SetActive(true);
+        switchToNeutral();
+        happyHeart.SetActive(false);
+        twoCorrectButton0.SetActive(false);
+        twoCorrectButton1.SetActive(true);
+
+        bool isOption = displayText(twoCorrectText);
+        if (isOption == true)
+        {
+            if (optionCounter == 0)
+            {
+                craftButtons.SetActive(true);
+                textSpace.SetActive(false);
+                twoCorrectButton1.SetActive(false);
+            }
+            else triggerLeave();
+            optionCounter++;
+        }
+    }
+
+    public void chooseBunting()
+    {
+        GameController.showBunting(bunting);
+        twoCorrectIngredient1();
+        craftButtons.SetActive(false);
+    }
+
+    public void chooseShelfObject()
+    {
+        GameController.showShelfObject(shelfObject);
+        twoCorrectIngredient1();
+        craftButtons.SetActive(false);
+    }
+
+    public void chooseWallArt()
+    {
+        GameController.showWallArt(art);
+        twoCorrectIngredient1();
+        craftButtons.SetActive(false);
+    }
+}
