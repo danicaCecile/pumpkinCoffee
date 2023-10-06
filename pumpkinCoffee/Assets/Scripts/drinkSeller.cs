@@ -34,6 +34,7 @@ public class drinkSeller : MonoBehaviour
 
     public void generateDrink()
     {
+        Debug.Log("Generate!");
         int rand = Random.Range(0, 3);
         mug.SetActive(true);
         Sprite chosenMug = mugOptions[rand];
@@ -150,9 +151,17 @@ public class drinkSeller : MonoBehaviour
                 else if(GameController.getTrixieDrinkStage() == 1)
                 {
                     //compare to heart drink
-                    if (isHeartDrink() == 0) Debug.Log("no correct ingredients");//bad response
-                    else if (isHeartDrink() == 1) bank.addBal(drinkCost); //could be better
-                    else if (isHeartDrink() == 2) bank.addBal(drinkCost); //perfect
+                    Debug.Log("Activated!");
+                    if (isHeartDrink() == -1) GameController.tryAgainHeart();
+                    else if(isHeartDrink() == 0) GameController.tryAgainHeart();
+                    else if (isHeartDrink() == 1) {
+                        GameController.oneCorrectHeart();
+                        bank.addBal(drinkCost); //could be better
+                    }
+                    else if (isHeartDrink() == 2) {
+                        GameController.twoCorrectHeart();
+                        bank.addBal(drinkCost); //perfect
+                    }
                 }
                 else
                 {

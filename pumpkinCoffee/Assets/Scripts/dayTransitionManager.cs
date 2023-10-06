@@ -12,6 +12,7 @@ public class dayTransitionManager : MonoBehaviour
     public GameObject dayOverText;
     public GameObject checklist;
     public gameController GameController;
+    public trixieController trixieOutside;
 
     public AudioClip day2Music;
     public AudioClip day3Music;
@@ -28,7 +29,7 @@ public class dayTransitionManager : MonoBehaviour
 
     void Update()
     {
-        if(GameController.isDayOver() == true && isTransitioning == false && hasGameStarted == true)
+        if(GameController.isDayOver() == true && isTransitioning == false && hasGameStarted == true && trixieOutside.getIsTrixieAtWindow() == false)
         {
             isTransitioning = true;
             GameController.pause();
@@ -79,6 +80,7 @@ public class dayTransitionManager : MonoBehaviour
     public void startNextDay()
     {
         StartCoroutine(activateDayTransitionPart2());
+        GameController.nextTrixieDrinkStage();
     }
 
     private IEnumerator activateDayTransitionPart2()

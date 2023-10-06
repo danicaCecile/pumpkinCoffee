@@ -17,6 +17,7 @@ public class gameController : MonoBehaviour
     public AudioSource backgroundMusic;
 
     private int trixieDrinkStage = 0;
+    private int trixieInteractions = 0;
 
     void Start()
     {
@@ -89,15 +90,13 @@ public class gameController : MonoBehaviour
         Clock.resetDay();
         shop.closeShop();
         currentCustomer.getNewCustomer();
+        DrinkSeller.generateDrink();
     }
 
     public void getNewCustomer()
     {
-        if (Clock.getIsDayOver() == false)
-        {
-            currentCustomer.getNewCustomer();
-            DrinkSeller.generateDrink();
-        }
+        DrinkSeller.generateDrink();
+        currentCustomer.getNewCustomer();
     }
 
     public bool[] getChecklistItems()
@@ -142,7 +141,7 @@ public class gameController : MonoBehaviour
     }
     public bool getIsTrixieReady()
     {
-        return Trixie.getReadyForDrink();
+        return Trixie.getReadyForDrink() || trixieInside.getIsReadyForDrink();
     }
 
     public void nextTrixieDrinkStage()
@@ -173,6 +172,24 @@ public class gameController : MonoBehaviour
         Trixie.twoCorrectIngredient0();
     }
 
+    public void tryAgainHeart()
+    {
+        if(trixieInside.getIsTrixieInside() == true)
+        {
+            trixieInside.tryAgainHeart();
+        }
+    }
+
+    public void oneCorrectHeart()
+    {
+        trixieInside.oneCorrectIngredient0();
+    }
+
+    public void twoCorrectHeart()
+    {
+        trixieInside.twoCorrectIngredient0();
+    }
+
     public void showBunting(GameObject option)
     {
         shop.showBunting(option, 00);
@@ -186,5 +203,19 @@ public class gameController : MonoBehaviour
     public void showShelfObject(GameObject option)
     {
         shop.showShelfObject(option, 00);
+    }
+
+    public int getTrixieInteractions()
+    {
+        return trixieInteractions;
+    }
+
+    public void addTrixieInteraction()
+    {
+        trixieInteractions++;
+    }
+
+    public int getCraftChoice(){
+        return Trixie.choice;
     }
 }

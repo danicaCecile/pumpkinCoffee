@@ -95,7 +95,7 @@ public class trixieController : MonoBehaviour
                 isTrixieAtWindow = true;
             }
 
-            if (GameController.getCustomerCount() == 7 && hasApproached3 == false && GameController.getIsServicingCustomer() == false && GameController.isTimeUp() == false)
+            if (GameController.getCustomerCount() == 7 && hasApproached3 == false && GameController.getIsServicingCustomer() == false)
             {
                 isTrixieArriving = true;
                 hasApproached3 = true;
@@ -114,6 +114,7 @@ public class trixieController : MonoBehaviour
                 isTrixieArriving = false;
                 StartCoroutine(displayFirstWindowBubble());
                 isTrixieActuallyAtWindow = true;
+                GameController.addTrixieInteraction();
             }
         }
 
@@ -122,9 +123,10 @@ public class trixieController : MonoBehaviour
             trixieWindow.transform.position += new Vector3(0, -speed, 0);
             if (trixieWindow.transform.position.y <= 0.5f)
             {
-                GameController.getNewCustomer();
                 isTrixieLeaving = false;
                 isTrixieAtWindow = false;
+                isTrixieActuallyAtWindow = false;
+                if (GameController.isDayOver() == false) GameController.getNewCustomer();
                 isTrixieActuallyAtWindow = false;
             }
         }
@@ -236,7 +238,6 @@ public class trixieController : MonoBehaviour
 
     public void triggerLeave()
     {
-        Debug.Log(":3");
         isTrixieLeaving = true;
         textBubble.SetActive(false);
     }
@@ -310,11 +311,13 @@ public class trixieController : MonoBehaviour
         }
     }
 
+    public int choice = -1;
     public void chooseBunting()
     {
         GameController.showBunting(bunting);
         twoCorrectIngredient1();
         craftButtons.SetActive(false);
+        choice = 0;
     }
 
     public void chooseShelfObject()
@@ -322,6 +325,7 @@ public class trixieController : MonoBehaviour
         GameController.showShelfObject(shelfObject);
         twoCorrectIngredient1();
         craftButtons.SetActive(false);
+        choice = 1;
     }
 
     public void chooseWallArt()
@@ -329,5 +333,6 @@ public class trixieController : MonoBehaviour
         GameController.showWallArt(art);
         twoCorrectIngredient1();
         craftButtons.SetActive(false);
+        choice = 2;
     }
 }
