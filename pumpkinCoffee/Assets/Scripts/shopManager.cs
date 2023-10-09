@@ -40,6 +40,14 @@ public class shopManager : MonoBehaviour
     public bank Bank;
     public gameController GameController;
 
+
+    public GameObject trixieCraftShelfLock;
+    public GameObject trixieCraftShelfLabel;
+    public GameObject trixieCraftArtLock;
+    public GameObject trixieCraftArtLabel;
+    public GameObject trixieCraftBuntingLock;
+    public GameObject trixieCraftBuntingLabel;
+
     void Start()
     {
         currentWallColor = wallColorObject2;
@@ -75,6 +83,21 @@ public class shopManager : MonoBehaviour
         }
     }
 
+    public void unlockBunting(){
+        trixieCraftBuntingLock.SetActive(false);
+        trixieCraftBuntingLabel.SetActive(true);
+    }
+
+    public void unlockShelf(){
+        trixieCraftShelfLock.SetActive(false);
+        trixieCraftShelfLabel.SetActive(true);
+    }
+
+    public void unlockArt(){
+        trixieCraftArtLock.SetActive(false);
+        trixieCraftArtLabel.SetActive(true);
+    }
+
     public void goBack()
     {
         currentShopType.SetActive(false);
@@ -91,7 +114,7 @@ public class shopManager : MonoBehaviour
         shopHome.SetActive(false);
     }
 
-    public void showBunting(GameObject option, float price)
+    public void showBunting(GameObject option, float price, GameObject priceLabel)
     {
         if (Bank.canAfford(price))
         {
@@ -99,10 +122,11 @@ public class shopManager : MonoBehaviour
             currentBunting = option;
             option.SetActive(true);
             Bank.subBal(price);
+            if(priceLabel != null)priceLabel.SetActive(false);
         }
     }
 
-    public void showWallArt(GameObject option, float price)
+    public void showWallArt(GameObject option, float price, GameObject priceLabel)
     {
         if (Bank.canAfford(price))
         {
@@ -110,10 +134,11 @@ public class shopManager : MonoBehaviour
             currentWallArt = option;
             option.SetActive(true);
             Bank.subBal(price);
+            if(priceLabel != null)priceLabel.SetActive(false);
         }
     }
 
-    public void showShelfObject(GameObject option, float price)
+    public void showShelfObject(GameObject option, float price, GameObject priceLabel)
     {
         if (Bank.canAfford(price))
         {
@@ -121,16 +146,18 @@ public class shopManager : MonoBehaviour
             currentShelfObject = option;
             option.SetActive(true);
             Bank.subBal(price);
+            if(priceLabel != null)priceLabel.SetActive(false);
         }
     }
 
-    private void showWallColor(GameObject option, float price)
+    public void showWallColor(GameObject option, float price, GameObject priceLabel)
     {
         if (Bank.canAfford(price)) {
             currentWallColor.SetActive(false);
             currentWallColor = option;
             option.SetActive(true);
             Bank.subBal(price);
+            if(priceLabel != null) priceLabel.SetActive(false);
         }
     }
 
@@ -169,66 +196,99 @@ public class shopManager : MonoBehaviour
 
     //for shop buttons to buy decorations
     //bunting
+    private float orangePurpleBuntingPrice = 70f;
+    public GameObject orangePurpleBuntingPriceUI;
     public void buyOrangePurpleBunting()
     {
-        showBunting(buntingObject0, 70f);
+        showBunting(buntingObject0, orangePurpleBuntingPrice, orangePurpleBuntingPriceUI);
+        orangePurpleBuntingPrice = 0f;
     }
 
+    private float greenYellowBuntingPrice = 50f;
+    public GameObject greenYellowBuntingPriceUI;
     public void buyGreenYellowBunting()
     {
-        showBunting(buntingObject1, 50f);
+        showBunting(buntingObject1, greenYellowBuntingPrice, greenYellowBuntingPriceUI);
+        greenYellowBuntingPrice = 0f;
     }
 
+    private float yellowBrownBuntingPrice = 60f;
+    public GameObject yellowBrownBuntingPriceUI;
     public void buyYellowBrownBunting()
     {
-        showBunting(buntingObject2, 60f);
+        showBunting(buntingObject2, yellowBrownBuntingPrice, yellowBrownBuntingPriceUI);
+        yellowBrownBuntingPrice = 0f;
     }
 
     //art
+    private float spookyArtPrice = 70f;
+    public GameObject spookyArtPriceUI;
     public void buySpookyArt()
     {
-        showWallArt(wallArtObject0, 70f);
+        showWallArt(wallArtObject0, spookyArtPrice, spookyArtPriceUI);
+        spookyArtPrice = 0f;
     }
 
+    private float modernArtPrice = 60f;
+    public GameObject modernArtPriceUI;
     public void buyModernArt()
     {
-        showWallArt(wallArtObject1, 60f);
+        showWallArt(wallArtObject1, modernArtPrice, modernArtPriceUI);
+        modernArtPrice = 0f;
     }
 
+    private float natureArtPrice = 50f;
+    public GameObject natureArtPriceUI;
     public void buyNatureArt()
     {
-        showWallArt(wallArtObject2, 50f);
+        showWallArt(wallArtObject2, natureArtPrice, natureArtPriceUI);
+        natureArtPrice = 0f;
     }
 
     //shelf decor
+    private float pumpkinShelfPrice = 70f;
+    public GameObject pumpkinShelfPriceUI;
     public void buyPumpkin()
     {
-        showShelfObject(shelfObject0, 70f);
+        showShelfObject(shelfObject0, pumpkinShelfPrice, pumpkinShelfPriceUI);
+        pumpkinShelfPrice = 0f;
     }
 
+    private float plantShelfPrice = 60f;
+    public GameObject plantShelfPriceUI;
     public void buyPottedPlant()
     {
-        showShelfObject(shelfObject1, 60f);
+        showShelfObject(shelfObject1, plantShelfPrice, plantShelfPriceUI);
+        plantShelfPrice = 0f;
     }
 
+    private float webShelfPrice = 50f;
+    public GameObject webShelfPriceUI;
     public void buySpiderWeb()
     {
-        showShelfObject(shelfObject2, 50f);
+        showShelfObject(shelfObject2, webShelfPrice, webShelfPriceUI);
+        webShelfPrice = 0f;
     }
 
     //wall colors
+    private float yellowPrice = 20f;
+    public GameObject yellowPriceUI;
     public void buyYellow()
     {
-        showWallColor(wallColorObject0, 20f);
+        showWallColor(wallColorObject0, yellowPrice, yellowPriceUI);
+        yellowPrice = 0f;
     }
 
+    private float purplePrice = 20f;
+    public GameObject purplePriceUI;
     public void buyPurple()
     {
-        showWallColor(wallColorObject1, 20f);
+        showWallColor(wallColorObject1, purplePrice, purplePriceUI);
+        purplePrice = 0f;
     }
 
     public void buyGreen()
     {
-        showWallColor(wallColorObject2, 0f);
+        showWallColor(wallColorObject2, 0f, null);
     }
 }

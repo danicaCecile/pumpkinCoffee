@@ -82,6 +82,8 @@ public class trixieControllerInside : MonoBehaviour
     public List<string> day3TryAgainText = new List<string>();
     public GameObject correctFavoriteButton0;
     public GameObject correctFavoriteButton1;
+
+    private bool gotCraft = false;
     void Update()
     {
         if (gameController.getCustomerCount() == 7 && gameController.getDay() == 1 && hasSwappedIsTrixieInside == false)
@@ -288,8 +290,9 @@ public class trixieControllerInside : MonoBehaviour
         twoCorrectButton0.SetActive(false);
         twoCorrectButton1.SetActive(true);
 
+        gotCraft = true;
         bool isOption;
-        if(gameController.getTrixieInteractions() > 0) isOption = displayText(twoCorrectTextMetBefore);
+        if(gameController.getCraftChoice() != -1) isOption = displayText(twoCorrectTextMetBefore);
         else isOption = displayText(twoCorrectText);
 
         if (isOption == true)
@@ -313,11 +316,12 @@ public class trixieControllerInside : MonoBehaviour
     public GameObject shelfObject;
 
     private void activateCraftButtons(){
+        Debug.Log(gameController.getCraftChoice());
         craftButtons.SetActive(true);
         int choice = gameController.getCraftChoice();
         if(choice == 0) buntingButton.SetActive(false);
         else if(choice == 1) shelfButton.SetActive(false);
-        else artButton.SetActive(false);
+        else if(choice == 2) artButton.SetActive(false);
     }
 
     public void chooseBunting()
@@ -464,7 +468,7 @@ public class trixieControllerInside : MonoBehaviour
         correctFavoriteButton1.SetActive(true);
 
         bool isOption;
-        if(gameController.getTrixieInteractions() > 0) isOption = displayText(twoCorrectTextMetBefore);
+        if(gotCraft == true) isOption = displayText(twoCorrectTextMetBefore);
         else isOption = displayText(twoCorrectText);
 
         if (isOption == true)

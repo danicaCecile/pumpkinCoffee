@@ -207,17 +207,20 @@ public class gameController : MonoBehaviour
 
     public void showBunting(GameObject option)
     {
-        shop.showBunting(option, 00);
+        shop.showBunting(option, 00, null);
+        shop.unlockBunting();
     }
 
     public void showWallArt(GameObject option)
     {
-        shop.showWallArt(option, 00);
+        shop.showWallArt(option, 00, null);
+        shop.unlockArt();
     }
 
     public void showShelfObject(GameObject option)
     {
-        shop.showShelfObject(option, 00);
+        shop.showShelfObject(option, 00, null);
+        shop.unlockShelf();
     }
 
     public int getTrixieInteractions()

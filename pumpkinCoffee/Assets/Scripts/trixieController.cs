@@ -72,6 +72,7 @@ public class trixieController : MonoBehaviour
     public GameObject art;
     public GameObject shelfObject;
 
+    public int choice = -1;
     void Update()
     {
         if (GameController.getDay() == 0)
@@ -311,9 +312,9 @@ public class trixieController : MonoBehaviour
         }
     }
 
-    public int choice = -1;
     public void chooseBunting()
     {
+        Debug.Log("You chose bunting from trixie");
         GameController.showBunting(bunting);
         twoCorrectIngredient1();
         craftButtons.SetActive(false);
