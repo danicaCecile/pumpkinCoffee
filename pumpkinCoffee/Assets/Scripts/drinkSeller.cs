@@ -31,10 +31,11 @@ public class drinkSeller : MonoBehaviour
     public Sprite up;
     public Sprite down;
     public SpriteRenderer bell;
-
+    private Sprite chosenMug;
     public void generateDrink()
     {
-        Debug.Log("Generate!");
+        //Debug.Log("Generate!");
+        customerDrinkConfig.Clear();
         int rand = Random.Range(0, 3);
         mug.SetActive(true);
         Sprite chosenMug = mugOptions[rand];
@@ -123,14 +124,14 @@ public class drinkSeller : MonoBehaviour
 
     private IEnumerator bellPressedAction()
     {
-        Debug.Log(GameController.getIsTrixieReady());
-        Debug.Log(GameController.getTrixieDrinkStage());
-        Debug.Log(customerDrinkConfig[0]);
+        //Debug.Log(GameController.getIsTrixieReady());
+        //Debug.Log(GameController.getTrixieDrinkStage());
+        //Debug.Log(customerDrinkConfig[0]);
         if (isPaused == false)
         {
             if(GameController.getIsTrixieReady() == true)
             {
-                if(GameController.getTrixieDrinkStage() == 0){
+                if(GameController.getDay() == 0){
                     //compare to pumpkin drink
                     if (isPumpkinDrink() == -1)
                     {
@@ -148,7 +149,7 @@ public class drinkSeller : MonoBehaviour
                         GameController.twoCorrectPumpkin();
                     }//perfect
                 }
-                else if(GameController.getTrixieDrinkStage() == 1)
+                else if(GameController.getDay() == 1)
                 {
                     //compare to heart drink
                     Debug.Log("Activated!");
@@ -166,12 +167,17 @@ public class drinkSeller : MonoBehaviour
                 else
                 {
                     //make her your favorite drink (only condition is that it has to have a mug and a drink)
-                    if (isFavoriteDrink() == null) Debug.Log("missing drink or mug");
-                    else bank.addBal(drinkCost);
+                    chosenMug = isFavoriteDrink();
+                    if (chosenMug == null) GameController.tryAgainFavorite();
+                    else {
+                        GameController.correctFavorite();
+                        bank.addBal(drinkCost);
+                    }
                 }
 
                 clearDrink();
                 userDrink.clearDrink();
+                generateDrink();
             }
             else
             {
@@ -193,6 +199,13 @@ public class drinkSeller : MonoBehaviour
                 generateDrink();
             }
         }
+    }
+
+    public string getChosenMug(){
+        if(chosenMug == mugOptions[0]) return "heart";
+        if(chosenMug == mugOptions[1]) return "lace";
+        if(chosenMug == mugOptions[2]) return "pumpkin";
+        return "";
     }
 
     private IEnumerator bellAnimation()

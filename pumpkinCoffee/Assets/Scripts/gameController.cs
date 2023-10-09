@@ -67,7 +67,8 @@ public class gameController : MonoBehaviour
         bool clockDayOver = Clock.getIsDayOver();
         bool isServicingCustomer = currentCustomer.getIsServicingCustomer();
         bool isTrixieActuallyAtWindow = Trixie.getIsTrixieActuallyAtWindow();
-        return clockDayOver && !isServicingCustomer && !isTrixieActuallyAtWindow;
+        bool isTrixieInside = trixieInside.getIsTrixieInside();
+        return clockDayOver && !isServicingCustomer && !isTrixieActuallyAtWindow && !isTrixieInside;
     }
 
     public bool isTimeUp()
@@ -91,12 +92,13 @@ public class gameController : MonoBehaviour
         shop.closeShop();
         currentCustomer.getNewCustomer();
         DrinkSeller.generateDrink();
+        trixieInside.resetInsideTrixie();
     }
 
     public void getNewCustomer()
     {
-        DrinkSeller.generateDrink();
         currentCustomer.getNewCustomer();
+        //DrinkSeller.generateDrink();
     }
 
     public bool[] getChecklistItems()
@@ -190,6 +192,19 @@ public class gameController : MonoBehaviour
         trixieInside.twoCorrectIngredient0();
     }
 
+    public void tryAgainFavorite()
+    {
+        if(trixieInside.getIsTrixieInside() == true)
+        {
+            trixieInside.tryAgainFavorite();
+        }
+    }
+
+    public void correctFavorite()
+    {
+        trixieInside.correctFavorite();
+    }
+
     public void showBunting(GameObject option)
     {
         shop.showBunting(option, 00);
@@ -217,5 +232,9 @@ public class gameController : MonoBehaviour
 
     public int getCraftChoice(){
         return Trixie.choice;
+    }
+
+    public string getChosenMug(){
+        return DrinkSeller.getChosenMug();
     }
 }

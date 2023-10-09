@@ -20,13 +20,14 @@ public class trixieControllerInside : MonoBehaviour
 
     public List<string> day2IntroductionTextMetBefore = new List<string>();
     public List<string> day2IntroductionText = new List<string>();
+
     public List<string> day2OrderText = new List<string>();
     public GameObject day2YesAndNoButtons;
     public GameObject day2YesArrowButton;
 
     public GameObject day2YesArrow2Button;
     public GameObject day2NoArrowButton;
-    public GameObject day2NoArrow2Button;
+    //public GameObject day2NoArrow2Button;
 
     public GameObject day2IntroductionArrowButton;
 
@@ -63,6 +64,24 @@ public class trixieControllerInside : MonoBehaviour
 
     public List<string> oneCorrectText = new List<string>();
     public List<string> twoCorrectText = new List<string>();
+    public List<string> twoCorrectTextMetBefore = new List<string>();
+    public GameObject Day2Container;
+
+    public GameObject day3IntroductionArrowButton;
+    public GameObject day3YesAndNoButtons;
+    public List<string> day3IntroductionTextMetBefore = new List<string>();
+    public List<string> day3IntroductionText = new List<string>();
+    public GameObject day3YesArrowButton;
+    public GameObject day3NoArrowButton;
+    public GameObject day3NevermindButton;
+    public List<string> day3YesText = new List<string>();
+    public GameObject day3YesArrow2Button;
+    public List<string> day3OrderText = new List<string>();
+    public List<string> day3NoText = new List<string>();
+    public GameObject tryAgainFavoriteButton;
+    public List<string> day3TryAgainText = new List<string>();
+    public GameObject correctFavoriteButton0;
+    public GameObject correctFavoriteButton1;
     void Update()
     {
         if (gameController.getCustomerCount() == 7 && gameController.getDay() == 1 && hasSwappedIsTrixieInside == false)
@@ -72,6 +91,20 @@ public class trixieControllerInside : MonoBehaviour
         }
 
         if (gameController.getCustomerCount() == 7 && gameController.getDay() == 1 && gameController.getIsServicingCustomer() == false && hasTrixieEntered == false)
+        {
+            gameController.pauseDrinkCreationAndSale();
+            trixieEntering = true;
+            hasTrixieEntered = true;
+        }
+
+        if (gameController.getCustomerCount() == 7 && gameController.getDay() == 2 && hasSwappedIsTrixieInside == false)
+        {
+            hasSwappedIsTrixieInside = true;
+            trixie.SetActive(false);
+            isTrixieInside = true;
+        }
+
+        if (gameController.getCustomerCount() == 7 && gameController.getDay() == 2 && gameController.getIsServicingCustomer() == false && hasTrixieEntered == false)
         {
             gameController.pauseDrinkCreationAndSale();
             trixieEntering = true;
@@ -90,6 +123,12 @@ public class trixieControllerInside : MonoBehaviour
                 //isTrixieInside = true;
                 gameController.unPauseDrinkCreationAndSale();
                 showBubble();
+                if(gameController.getDay() == 2) {
+                    currentTextCounter = -1;
+                    day3DisplayIntroductionText();
+                    day3IntroductionArrowButton.SetActive(true);
+                    Day2Container.SetActive(false);
+                }
             }
         }
 
@@ -103,9 +142,15 @@ public class trixieControllerInside : MonoBehaviour
                 gameController.unPauseDrinkCreationAndSale();
                 trixie.SetActive(false);
                 isTrixieInside = false;
+                gameController.addTrixieInteraction();
                 if (gameController.isDayOver() == false) gameController.getNewCustomer();
             }
         }
+    }
+
+    public void resetInsideTrixie(){
+        hasSwappedIsTrixieInside = false;
+        hasTrixieEntered = false;
     }
 
     private void switchToEmote(Sprite emote)
@@ -172,6 +217,7 @@ public class trixieControllerInside : MonoBehaviour
     {
         text.SetText(day2OrderText[0]);
         day2YesArrow2Button.SetActive(false);
+        tryAgainHeartButton.SetActive(false);
         day2NevermindButton.SetActive(true);
         isReadyForDrink = true;
     }
@@ -242,7 +288,10 @@ public class trixieControllerInside : MonoBehaviour
         twoCorrectButton0.SetActive(false);
         twoCorrectButton1.SetActive(true);
 
-        bool isOption = displayText(twoCorrectText);
+        bool isOption;
+        if(gameController.getTrixieInteractions() > 0) isOption = displayText(twoCorrectTextMetBefore);
+        else isOption = displayText(twoCorrectText);
+
         if (isOption == true)
         {
             if (optionCounter == 0)
@@ -274,7 +323,8 @@ public class trixieControllerInside : MonoBehaviour
     public void chooseBunting()
     {
         gameController.showBunting(bunting);
-        twoCorrectIngredient1();
+        if(gameController.getDay() == 1) twoCorrectIngredient1();
+        else correctFavorite1();
         buntingButton.SetActive(false);
         craftButtons.SetActive(false);
     }
@@ -282,7 +332,8 @@ public class trixieControllerInside : MonoBehaviour
     public void chooseShelfObject()
     {
         gameController.showShelfObject(shelfObject);
-        twoCorrectIngredient1();
+        if(gameController.getDay() == 1) twoCorrectIngredient1();
+        else correctFavorite1();
         shelfButton.SetActive(false);
         craftButtons.SetActive(false);
     }
@@ -290,7 +341,8 @@ public class trixieControllerInside : MonoBehaviour
     public void chooseWallArt()
     {
         gameController.showWallArt(art);
-        twoCorrectIngredient1();
+        if(gameController.getDay() == 1) twoCorrectIngredient1();
+        else correctFavorite1();
         artButton.SetActive(false);
         craftButtons.SetActive(false);
     }
@@ -325,5 +377,114 @@ public class trixieControllerInside : MonoBehaviour
             return false;
         }
         else return true;
+    }
+
+    //Day 3
+    public void day3DisplayIntroductionText()
+    {
+        List<string> introductionText = null;
+        if (gameController.getTrixieInteractions() >= 1) introductionText = day3IntroductionTextMetBefore;
+        else introductionText = day3IntroductionText;
+        bool isOption = displayText(introductionText);
+        if (isOption == true)
+        {
+            day3IntroductionArrowButton.SetActive(false);
+            textSpace.SetActive(false);
+            day3YesAndNoButtons.SetActive(true);
+        }
+    }
+
+    public void day3Yes()
+    {
+        day3YesArrowButton.SetActive(true);
+        textSpace.SetActive(false);
+
+        day3YesAndNoButtons.SetActive(false);
+        switchToEmote(happyFace);
+        happyHeart.SetActive(true);
+    }
+
+    public void day3DisplayYesText(){
+        switchToNeutral();
+        textSpace.SetActive(true);
+        text.SetText(day3YesText[0]);
+        happyHeart.SetActive(false);
+        day3YesArrowButton.SetActive(false);
+        day3YesArrow2Button.SetActive(true);
+    }
+
+    public void day3Order()
+    {
+        tryAgainFavoriteButton.SetActive(false);
+        text.SetText(day3OrderText[0]);
+        day3YesArrow2Button.SetActive(false);
+        day3NevermindButton.SetActive(true);
+        isReadyForDrink = true;
+    }
+
+    public void day3No()
+    {
+        day3NoArrowButton.SetActive(true);
+        sadSquiggle.SetActive(true);
+        day3NevermindButton.SetActive(false);
+        switchToEmote(sadFace);
+        textSpace.SetActive(false);
+        day3YesAndNoButtons.SetActive(false);
+        currentTextCounter = -1;
+        isReadyForDrink = false;
+    }
+
+    public void day3DisplayNoText(){
+        textSpace.SetActive(true);
+        switchToNeutral();
+        sadSquiggle.SetActive(false);
+        bool isOption = displayText(day3NoText);
+        if(isOption == true)
+        {
+            triggerLeave();
+        }
+    }
+
+    public void correctFavorite(){
+        isReadyForDrink = false;
+        currentTextCounter = -1;
+        textSpace.SetActive(false);
+        switchToEmote(happyFace);
+        correctFavoriteButton0.SetActive(true);
+        happyHeart.SetActive(true);
+        day3NevermindButton.SetActive(false);
+        optionCounter = 0;
+    }
+
+    public void correctFavorite1(){
+        textSpace.SetActive(true);
+        switchToNeutral();
+        happyHeart.SetActive(false);
+        correctFavoriteButton0.SetActive(false);
+        correctFavoriteButton1.SetActive(true);
+
+        bool isOption;
+        if(gameController.getTrixieInteractions() > 0) isOption = displayText(twoCorrectTextMetBefore);
+        else isOption = displayText(twoCorrectText);
+
+        if (isOption == true)
+        {
+            if (optionCounter == 0)
+            {
+                activateCraftButtons();
+                textSpace.SetActive(false);
+                correctFavoriteButton1.SetActive(false);
+            }
+            else triggerLeave();
+            optionCounter++;
+        }
+    }
+    
+    public void tryAgainFavorite(){
+        isReadyForDrink = false;
+        day3NevermindButton.SetActive(false);
+        tryAgainFavoriteButton.SetActive(true);
+        currentTextCounter = -1;
+        displayText(day3TryAgainText);
     }
 }
