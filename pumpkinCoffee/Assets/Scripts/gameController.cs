@@ -19,6 +19,11 @@ public class gameController : MonoBehaviour
     private int trixieDrinkStage = 0;
     private int trixieInteractions = 0;
 
+    public bool isPaused = false;
+
+    //Settings vars
+    public bool isPicPrompt = true;
+    public bool isLabelsOn = false;
     void Start()
     {
         pause();
@@ -41,6 +46,7 @@ public class gameController : MonoBehaviour
         Clock.pause();
         DrinkMaker.pause();
         DrinkSeller.pause();
+        isPaused = true;
     }
 
     public void unPause()
@@ -48,6 +54,7 @@ public class gameController : MonoBehaviour
         Clock.unPause();
         DrinkMaker.unPause();
         DrinkSeller.unPause();
+        isPaused = false;
     }
 
     public void pauseDrinkCreationAndSale()

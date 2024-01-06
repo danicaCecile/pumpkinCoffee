@@ -100,9 +100,6 @@ public class dayTransitionManager : MonoBehaviour
             if (GameController.didWin() == true) endingText = goodEndingText;
             else endingText = badEndingText;
             endingText.SetActive(true);
-            yield return new WaitForSeconds(3f);
-            endingText.SetActive(false);
-            GameController.end();
         }
         else
         {
@@ -110,10 +107,16 @@ public class dayTransitionManager : MonoBehaviour
             GameController.pauseDrinkCreationAndSale();
             GameController.resetDay();
             isTransitioning = false;
+            dayTransitionContainer.SetActive(false);
         }
+    }
+    public void end()
+    {
+        goodEndingText.SetActive(false);
+        badEndingText.SetActive(false);
+        GameController.end();
         dayTransitionContainer.SetActive(false);
     }
-
     private void activateDayTransitionText(bool activate)
     {
         int currentDay = GameController.getDay();

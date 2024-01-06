@@ -40,4 +40,5 @@ public class cutScene : MonoBehaviour
         checklist.SetActive(true);
         flip.Play();
     }
+
 }

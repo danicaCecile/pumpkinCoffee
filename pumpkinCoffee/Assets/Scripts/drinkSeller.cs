@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class drinkSeller : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class drinkSeller : MonoBehaviour
     public GameObject cream;
     public GameObject sprinkles;
 
+    public TextMeshProUGUI mugTextBox;
+    public TextMeshProUGUI drinkTextBox;
+    public TextMeshProUGUI creamTextBox;
+    public TextMeshProUGUI sprinklesTextBox;
+    public GameObject textBoxObject;
+
     public AudioSource bellDing;
 
     public List<Sprite> mugOptions = new List<Sprite>();
@@ -18,7 +25,13 @@ public class drinkSeller : MonoBehaviour
     public List<Sprite> creamOptions = new List<Sprite>();
     public List<Sprite> sprinklesOptions = new List<Sprite>();
 
+    public List<string> mugOptionsText = new List<string>();
+    public List<string> drinkOptionsText = new List<string>();
+    public List<string> creamOptionsText = new List<string>();
+    public List<string> sprinklesOptionsText = new List<string>();
+
     private List<Sprite> customerDrinkConfig = new List<Sprite>();
+
 
     public customer currentCustomer;
     public bank bank;
@@ -32,33 +45,64 @@ public class drinkSeller : MonoBehaviour
     public Sprite down;
     public SpriteRenderer bell;
     private Sprite chosenMug;
+
+    private int rand = 0;
+
+    private int drinkChoice = 0;
+    private int mugChoice = 0;
+    private int creamChoice = 0;
+    private int sprinklesChoice = 0;
+
     public void generateDrink()
     {
-        //Debug.Log("Generate!");
+        Debug.Log(GameController.isPicPrompt);
         customerDrinkConfig.Clear();
-        int rand = Random.Range(0, 3);
-        mug.SetActive(true);
+        rand = Random.Range(0, 3);
+        mugChoice = rand;
         Sprite chosenMug = mugOptions[rand];
-        mug.GetComponent<SpriteRenderer>().sprite = chosenMug;
         customerDrinkConfig.Add(chosenMug);
 
+        if(GameController.isPicPrompt == true) {
+            mug.SetActive(true);
+            mug.GetComponent<SpriteRenderer>().sprite = chosenMug;
+        }
+        else {
+            textBoxObject.SetActive(true);
+            mugTextBox.text = mugOptionsText[rand];
+        }
+
         rand = Random.Range(0, 3);
-        drink.SetActive(true);
+        drinkChoice = rand;
         Sprite chosenDrink = drinkOptions[rand];
-        drink.GetComponent<SpriteRenderer>().sprite = chosenDrink;
         customerDrinkConfig.Add(chosenDrink);
 
-        rand = Random.Range(0, 3);
-        cream.SetActive(true);
-        Sprite chosenCream = creamOptions[rand];
-        cream.GetComponent<SpriteRenderer>().sprite = chosenCream;
-        customerDrinkConfig.Add(chosenCream);
+        if(GameController.isPicPrompt == true) {
+            drink.SetActive(true);
+            drink.GetComponent<SpriteRenderer>().sprite = chosenDrink;
+        }
+        else drinkTextBox.text = drinkOptionsText[rand];
 
         rand = Random.Range(0, 3);
-        sprinkles.SetActive(true);
+        creamChoice = rand;
+        Sprite chosenCream = creamOptions[rand];
+        customerDrinkConfig.Add(chosenCream);
+
+        if(GameController.isPicPrompt == true) {
+            cream.SetActive(true);
+            cream.GetComponent<SpriteRenderer>().sprite = chosenCream;
+        }
+        else creamTextBox.text = creamOptionsText[rand];
+
+        rand = Random.Range(0, 3);
+        sprinklesChoice = rand;
         Sprite chosenSprinkles = sprinklesOptions[rand];
-        sprinkles.GetComponent<SpriteRenderer>().sprite = chosenSprinkles;
         customerDrinkConfig.Add(chosenSprinkles);
+
+        if(GameController.isPicPrompt == true) {
+            sprinkles.SetActive(true);
+            sprinkles.GetComponent<SpriteRenderer>().sprite = chosenSprinkles;
+        }
+        else sprinklesTextBox.text = sprinklesOptionsText[rand];
     }
 
     private int isPumpkinDrink()
@@ -100,6 +144,7 @@ public class drinkSeller : MonoBehaviour
         drink.SetActive(false);
         cream.SetActive(false);
         sprinkles.SetActive(false);
+        textBoxObject.SetActive(false);
     }
 
     private bool isCorrectDrink()
@@ -232,5 +277,31 @@ public class drinkSeller : MonoBehaviour
     public void unPause()
     {
         isPaused = false;
+    }
+
+    public void swapToPicture(){
+        textBoxObject.SetActive(false);
+        mug.SetActive(true);
+        drink.SetActive(true);
+        cream.SetActive(true);
+        sprinkles.SetActive(true);
+
+        mug.GetComponent<SpriteRenderer>().sprite = mugOptions[mugChoice];
+        drink.GetComponent<SpriteRenderer>().sprite = drinkOptions[drinkChoice];
+        cream.GetComponent<SpriteRenderer>().sprite = creamOptions[creamChoice];
+        sprinkles.GetComponent<SpriteRenderer>().sprite = sprinklesOptions[sprinklesChoice];
+    }
+
+    public void swapToText(){
+        mug.SetActive(false);
+        drink.SetActive(false);
+        cream.SetActive(false);
+        sprinkles.SetActive(false);
+        textBoxObject.SetActive(true);
+
+        mugTextBox.text = mugOptionsText[mugChoice];
+        drinkTextBox.text = drinkOptionsText[drinkChoice];
+        creamTextBox.text = creamOptionsText[creamChoice];
+        sprinklesTextBox.text = sprinklesOptionsText[sprinklesChoice];
     }
 }
